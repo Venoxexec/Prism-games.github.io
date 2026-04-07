@@ -10,23 +10,22 @@
 /* ── RESET & BASE ── */
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#0c0c10;
-  --surface:#141418;
-  --surface2:#1c1c22;
-  --surface3:#242430;
-  --border:rgba(255,255,255,.07);
-  --border2:rgba(255,255,255,.12);
-  --accent:#e040fb;
-  --accent2:#7c4dff;
-  --accent3:#00e5ff;
-  --gold:#ffea00;
-  --text:#f0f0f8;
-  --text2:#a0a0c0;
-  --text3:#606080;
-  --green:#00e676;
-  --red:#ff1744;
-  --radius:14px;
-  --nav-h:58px;
+  --bg:#0b0b0e;
+  --surface:#111115;
+  --surface2:#18181e;
+  --surface3:#202028;
+  --border:rgba(255,255,255,.06);
+  --border2:rgba(255,255,255,.10);
+  --accent:#6c3fff;
+  --accent-dim:rgba(108,63,255,.18);
+  --gold:#e8b84b;
+  --text:#ededf5;
+  --text2:#8888a8;
+  --text3:#4e4e68;
+  --green:#22c55e;
+  --red:#e04060;
+  --radius:8px;
+  --nav-h:52px;
 }
 html{scroll-behavior:smooth;}
 body{
@@ -37,45 +36,33 @@ body{
   overflow-x:hidden;
 }
 
-/* ── BACKGROUND ── */
-body::before{
-  content:'';
-  position:fixed;inset:0;
-  background:
-    radial-gradient(ellipse 60% 40% at 20% 10%,rgba(124,77,255,.08) 0%,transparent 60%),
-    radial-gradient(ellipse 50% 30% at 80% 80%,rgba(224,64,251,.07) 0%,transparent 60%);
-  pointer-events:none;z-index:0;
-}
-
 /* ── NAV ── */
 nav{
   position:sticky;top:0;z-index:200;
   height:var(--nav-h);
-  background:rgba(12,12,16,.88);
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
+  background:rgba(11,11,14,.94);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
   border-bottom:1px solid var(--border);
   display:flex;align-items:center;
-  padding:0 16px;gap:12px;
+  padding:0 14px;gap:10px;
 }
 .nav-logo{
   display:flex;align-items:center;gap:8px;
   text-decoration:none;flex-shrink:0;cursor:pointer;
+  user-select:none;
 }
 .nav-logo-icon{
-  width:32px;height:32px;border-radius:10px;
-  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  width:26px;height:26px;
   display:flex;align-items:center;justify-content:center;
-  font-size:16px;flex-shrink:0;
+  flex-shrink:0;
 }
 .nav-logo-text{
-  font-size:1.1rem;font-weight:800;letter-spacing:-.3px;
-  background:linear-gradient(90deg,#e040fb,#7c4dff);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
+  font-size:.95rem;font-weight:800;letter-spacing:-.3px;
+  color:var(--text);
 }
 .nav-cats{
-  display:flex;gap:3px;overflow-x:auto;flex:1;
+  display:flex;gap:1px;overflow-x:auto;flex:1;
   scrollbar-width:none;
   -webkit-overflow-scrolling:touch;
 }
@@ -83,29 +70,33 @@ nav{
 .cat-btn{
   background:none;border:none;
   color:var(--text3);
-  font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;
-  padding:5px 11px;border-radius:20px;
+  font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;
+  padding:5px 9px;border-radius:5px;
   cursor:pointer;white-space:nowrap;
-  transition:all .15s;
+  transition:color .13s,background .13s;
+  display:flex;align-items:center;gap:5px;
 }
-.cat-btn:hover{color:var(--text);background:var(--surface3);}
+.cat-btn svg{width:11px;height:11px;fill:currentColor;flex-shrink:0;}
+.cat-btn:hover{color:var(--text2);background:var(--surface3);}
 .cat-btn.active{
-  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  background:var(--accent);
   color:#fff;
 }
 .nav-search{
   display:flex;align-items:center;gap:6px;
   background:var(--surface2);
   border:1px solid var(--border2);
-  border-radius:24px;padding:6px 14px;
+  border-radius:6px;
+  padding:0 10px;
+  height:30px;
   flex-shrink:0;
-  transition:border-color .2s;
+  transition:border-color .13s;
 }
-.nav-search:focus-within{border-color:var(--accent);}
-.nav-search svg{width:14px;height:14px;opacity:.4;flex-shrink:0;}
+.nav-search:focus-within{border-color:rgba(108,63,255,.45);}
+.nav-search svg{width:12px;height:12px;color:var(--text3);flex-shrink:0;}
 .nav-search input{
   background:none;border:none;outline:none;
-  color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  color:var(--text);font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:500;
   width:120px;
 }
 .nav-search input::placeholder{color:var(--text3);}
@@ -113,58 +104,57 @@ nav{
 /* ── HERO ── */
 .hero{
   position:relative;z-index:1;
-  padding:28px 16px 16px;
+  padding:20px 16px 12px;
   text-align:center;
 }
 .hero-badge{
-  display:inline-flex;align-items:center;gap:5px;
-  background:rgba(124,77,255,.12);
-  border:1px solid rgba(124,77,255,.25);
-  border-radius:20px;padding:3px 12px;
-  font-size:.7rem;font-weight:700;
-  color:#b39ddb;letter-spacing:1px;
-  text-transform:uppercase;margin-bottom:10px;
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--surface2);
+  border:1px solid var(--border2);
+  border-radius:4px;padding:3px 10px;
+  font-size:.62rem;font-weight:700;
+  color:var(--text3);letter-spacing:1.2px;
+  text-transform:uppercase;margin-bottom:9px;
 }
+.hero-badge svg{width:10px;height:10px;fill:var(--accent);}
 .hero h1{
-  font-size:clamp(1.6rem,5vw,2.8rem);
-  font-weight:900;letter-spacing:-.5px;line-height:1.1;
-  margin-bottom:6px;
+  font-size:clamp(1.4rem,5vw,2.4rem);
+  font-weight:900;letter-spacing:-.4px;line-height:1.1;
+  margin-bottom:5px;
+  color:var(--text);
 }
-.hero h1 span{
-  background:linear-gradient(90deg,var(--accent3),var(--accent),var(--accent2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-.hero p{color:var(--text2);font-size:.88rem;max-width:420px;margin:0 auto;}
+.hero h1 span{color:var(--accent);}
+.hero p{color:var(--text2);font-size:.83rem;max-width:380px;margin:0 auto;}
 
 /* ── SECTION HEAD ── */
 .section-head{
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 16px;margin-bottom:12px;
+  padding:0 14px;margin-bottom:10px;
 }
 .section-label{
-  font-size:1rem;font-weight:800;
-  display:flex;align-items:center;gap:8px;
+  font-size:.86rem;font-weight:800;
+  display:flex;align-items:center;gap:7px;
+  letter-spacing:.2px;
 }
 .section-label::before{
   content:'';display:block;
-  width:4px;height:18px;border-radius:2px;
-  background:linear-gradient(to bottom,var(--accent),var(--accent2));
+  width:3px;height:14px;border-radius:2px;
+  background:var(--accent);
 }
 .game-count{
-  font-size:.72rem;color:var(--text3);
+  font-size:.65rem;color:var(--text3);
   font-family:'JetBrains Mono',monospace;
 }
 
 /* ── GAMES GRID ── */
 .wrapper{
   position:relative;z-index:1;
-  padding:0 12px 80px;
+  padding:0 10px 80px;
 }
 #games-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-  gap:10px;
+  grid-template-columns:repeat(auto-fill,minmax(148px,1fr));
+  gap:8px;
 }
 
 /* ── GAME CARD ── */
@@ -176,13 +166,13 @@ nav{
   cursor:pointer;
   text-decoration:none;
   display:block;
-  transition:transform .2s,border-color .2s,box-shadow .2s;
+  transition:transform .16s,border-color .16s,box-shadow .16s;
   position:relative;
 }
 .game-card:hover{
-  transform:translateY(-4px) scale(1.01);
-  border-color:rgba(224,64,251,.4);
-  box-shadow:0 8px 24px rgba(124,77,255,.2);
+  transform:translateY(-2px);
+  border-color:rgba(108,63,255,.3);
+  box-shadow:0 4px 18px rgba(0,0,0,.45);
 }
 .game-card:active{transform:scale(.97);}
 .card-thumb{
@@ -193,84 +183,92 @@ nav{
 .card-thumb img{
   width:100%;height:100%;object-fit:cover;
   display:block;
-  transition:transform .3s,filter .3s;
+  transition:transform .28s;
 }
 .game-card:hover .card-thumb img{
-  transform:scale(1.06);filter:brightness(1.1);
+  transform:scale(1.04);
 }
 .card-thumb .thumb-fallback{
   width:100%;height:100%;
   display:flex;align-items:center;justify-content:center;
-  font-size:2.2rem;
-  background:linear-gradient(135deg,var(--surface2),var(--surface3));
+  background:var(--surface3);
+}
+.card-thumb .thumb-fallback svg{
+  width:28px;height:28px;
+  color:var(--text3);
+  fill:none;stroke:currentColor;stroke-width:1.4;
+  stroke-linecap:round;stroke-linejoin:round;
 }
 .card-play{
   position:absolute;inset:0;
-  background:rgba(0,0,0,.5);
+  background:rgba(0,0,0,.52);
   display:flex;align-items:center;justify-content:center;
-  opacity:0;transition:opacity .2s;
+  opacity:0;transition:opacity .16s;
 }
 .game-card:hover .card-play{opacity:1;}
-.card-play svg{width:32px;height:32px;fill:rgba(255,255,255,.9);}
+.card-play svg{
+  width:32px;height:32px;fill:none;
+  stroke:rgba(255,255,255,.88);stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round;
+}
 .card-tag{
-  position:absolute;top:6px;left:6px;
-  font-size:.55rem;font-weight:800;letter-spacing:.8px;
-  text-transform:uppercase;padding:2px 7px;border-radius:4px;
+  position:absolute;top:5px;left:5px;
+  font-size:.5rem;font-weight:800;letter-spacing:.7px;
+  text-transform:uppercase;padding:2px 5px;border-radius:3px;
   pointer-events:none;
 }
 .tag-hot{background:var(--red);color:#fff;}
 .tag-new{background:var(--green);color:#000;}
 .tag-pop{background:var(--gold);color:#000;}
 
-.card-info{padding:8px 10px 10px;}
+.card-info{padding:7px 9px 9px;}
 .card-name{
-  font-size:.82rem;font-weight:700;
+  font-size:.79rem;font-weight:700;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  margin-bottom:2px;
+  margin-bottom:1px;
 }
 .card-cat{
-  font-size:.64rem;color:var(--text3);
-  font-weight:600;text-transform:uppercase;letter-spacing:.5px;
+  font-size:.6rem;color:var(--text3);
+  font-weight:600;text-transform:uppercase;letter-spacing:.4px;
 }
 
-/* ── LOAD ERROR OVERLAY ── */
-.card-thumb img.broken{display:none;}
-
-/* ── FAILED SEARCH ── */
+/* ── EMPTY STATE ── */
 .empty-state{
   display:none;text-align:center;padding:60px 20px;color:var(--text3);
   grid-column:1/-1;
 }
 .empty-state.show{display:block;}
-.empty-state .icon{font-size:3rem;margin-bottom:12px;}
+.empty-state .icon{
+  display:flex;justify-content:center;margin-bottom:12px;
+  color:var(--text3);
+}
 
 /* ── SCROLL TO TOP ── */
 #scrolltop{
-  position:fixed;bottom:20px;right:16px;z-index:100;
-  width:40px;height:40px;border-radius:50%;
+  position:fixed;bottom:18px;right:14px;z-index:100;
+  width:34px;height:34px;border-radius:6px;
   background:var(--surface2);border:1px solid var(--border2);
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;opacity:0;pointer-events:none;
-  transition:opacity .2s,transform .2s;
+  transition:opacity .18s,transform .13s;
 }
 #scrolltop.show{opacity:1;pointer-events:all;}
 #scrolltop:hover{transform:translateY(-2px);}
-#scrolltop svg{width:18px;height:18px;fill:var(--text2);}
+#scrolltop svg{width:15px;height:15px;stroke:var(--text2);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 
 /* ── RESPONSIVE ── */
-@media(max-width:500px){
-  #games-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));}
+@media(max-width:480px){
+  #games-grid{grid-template-columns:repeat(auto-fill,minmax(128px,1fr));}
   .nav-search{display:none;}
-  .nav-logo-text{font-size:1rem;}
 }
 @media(min-width:768px){
-  #games-grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr));}
+  #games-grid{grid-template-columns:repeat(auto-fill,minmax(168px,1fr));}
   nav{padding:0 20px;}
   .wrapper{padding:0 16px 80px;}
   .section-head{padding:0 16px;}
 }
 @media(min-width:1024px){
-  #games-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));}
+  #games-grid{grid-template-columns:repeat(auto-fill,minmax(178px,1fr));}
 }
 </style>
 </head>
@@ -279,32 +277,84 @@ nav{
 <!-- NAV -->
 <nav>
   <div class="nav-logo" onclick="filterCat('all')">
-    <div class="nav-logo-icon">🎮</div>
+    <div class="nav-logo-icon">
+      <!-- flat geometric G icon -->
+      <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" width="26" height="26">
+        <rect x="2" y="2" width="22" height="22" rx="5" fill="#6c3fff"/>
+        <path d="M17 9H12a3 3 0 0 0 0 6h2v-2h-2" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M15 13h3v2" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
     <span class="nav-logo-text">Prism Games</span>
   </div>
+
   <div class="nav-cats" id="navCats">
-    <button class="cat-btn active" data-cat="all" onclick="filterCat('all')">All</button>
-    <button class="cat-btn" data-cat="Casual" onclick="filterCat('Casual')">Casual</button>
-    <button class="cat-btn" data-cat="Shooter" onclick="filterCat('Shooter')">Shooter</button>
-    <button class="cat-btn" data-cat="Action" onclick="filterCat('Action')">Action</button>
-    <button class="cat-btn" data-cat="Adventure" onclick="filterCat('Adventure')">Adventure</button>
-    <button class="cat-btn" data-cat="Sports" onclick="filterCat('Sports')">Sports</button>
-    <button class="cat-btn" data-cat="Driver" onclick="filterCat('Driver')">Racing</button>
-    <button class="cat-btn" data-cat="Horror" onclick="filterCat('Horror')">Horror</button>
-    <button class="cat-btn" data-cat="Idle" onclick="filterCat('Idle')">Idle</button>
-    <button class="cat-btn" data-cat="Sandbox" onclick="filterCat('Sandbox')">Sandbox</button>
-    <button class="cat-btn" data-cat="Multiplayer" onclick="filterCat('Multiplayer')">Multiplayer</button>
-    <button class="cat-btn" data-cat="Fighting" onclick="filterCat('Fighting')">Fighting</button>
+    <!-- All -->
+    <button class="cat-btn active" data-cat="all" onclick="filterCat('all')">
+      <svg viewBox="0 0 12 12"><path d="M1 1h4v4H1zM7 1h4v4H7zM1 7h4v4H1zM7 7h4v4H7z"/></svg>All
+    </button>
+    <!-- Casual -->
+    <button class="cat-btn" data-cat="Casual" onclick="filterCat('Casual')">
+      <svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" stroke-width="1.3" fill="none" stroke="currentColor"/><path d="M4 6h4M6 4v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Casual
+    </button>
+    <!-- Shooter -->
+    <button class="cat-btn" data-cat="Shooter" onclick="filterCat('Shooter')">
+      <svg viewBox="0 0 12 12"><path d="M2 6h6M9 4l2 2-2 2M6 3l-1 3 1 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Shooter
+    </button>
+    <!-- Action -->
+    <button class="cat-btn" data-cat="Action" onclick="filterCat('Action')">
+      <svg viewBox="0 0 12 12"><path d="M6 1l1.5 3.5L11 5l-2.5 2.4.6 3.6L6 9.3 2.9 11l.6-3.6L1 5l3.5-.5z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg>Action
+    </button>
+    <!-- Adventure -->
+    <button class="cat-btn" data-cat="Adventure" onclick="filterCat('Adventure')">
+      <svg viewBox="0 0 12 12"><path d="M2 9L6 2l4 7H2z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/><path d="M4.5 9l1.5-3 1.5 3" stroke="currentColor" stroke-width="1" fill="none"/></svg>Adventure
+    </button>
+    <!-- Sports -->
+    <button class="cat-btn" data-cat="Sports" onclick="filterCat('Sports')">
+      <svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.3" fill="none"/><path d="M2 6h8M6 2c-1 1.5-1 5 0 8M6 2c1 1.5 1 5 0 8" stroke="currentColor" stroke-width="1" fill="none"/></svg>Sports
+    </button>
+    <!-- Racing -->
+    <button class="cat-btn" data-cat="Driver" onclick="filterCat('Driver')">
+      <svg viewBox="0 0 12 12"><rect x="1" y="4" width="10" height="5" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="3.5" cy="9" r="1.2" stroke="currentColor" stroke-width="1.1" fill="none"/><circle cx="8.5" cy="9" r="1.2" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M4 4l1-2h2l1 2" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linejoin="round"/></svg>Racing
+    </button>
+    <!-- Horror -->
+    <button class="cat-btn" data-cat="Horror" onclick="filterCat('Horror')">
+      <svg viewBox="0 0 12 12"><path d="M6 1c-2.8 0-4.5 2-4.5 4.5 0 1.5.5 2.5 1.5 3l-.5 2.5h7L9 8.5c1-.5 1.5-1.5 1.5-3C10.5 3 8.8 1 6 1z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg>Horror
+    </button>
+    <!-- Idle -->
+    <button class="cat-btn" data-cat="Idle" onclick="filterCat('Idle')">
+      <svg viewBox="0 0 12 12"><path d="M6 2v2M10 6h-2M6 10V8M2 6h2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/><circle cx="6" cy="6" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>Idle
+    </button>
+    <!-- Sandbox -->
+    <button class="cat-btn" data-cat="Sandbox" onclick="filterCat('Sandbox')">
+      <svg viewBox="0 0 12 12"><rect x="1" y="6" width="10" height="5" rx="1" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 6V4a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>Sandbox
+    </button>
+    <!-- Multiplayer -->
+    <button class="cat-btn" data-cat="Multiplayer" onclick="filterCat('Multiplayer')">
+      <svg viewBox="0 0 12 12"><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="8" cy="4" r="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M1 10c0-2 1.3-3 3-3M11 10c0-2-1.3-3-3-3M6 7c1 0 2 .8 2 2" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" fill="none"/></svg>Multi
+    </button>
+    <!-- Fighting -->
+    <button class="cat-btn" data-cat="Fighting" onclick="filterCat('Fighting')">
+      <svg viewBox="0 0 12 12"><path d="M3 9l3-7 3 7M4.5 6h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Fighting
+    </button>
   </div>
+
   <div class="nav-search">
-    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
-    <input type="search" id="searchInput" placeholder="Search…" oninput="handleSearch()"/>
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <circle cx="8.5" cy="8.5" r="5"/>
+      <path d="M15 15l-3-3"/>
+    </svg>
+    <input type="search" id="searchInput" placeholder="Search games…" oninput="handleSearch()"/>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">✦ Prism Games ✦</div>
+  <div class="hero-badge">
+    <svg viewBox="0 0 10 10"><path d="M5 1l1 3h3l-2.5 2 1 3L5 7.5 2.5 9l1-3L1 4h3z" fill="currentColor"/></svg>
+    Prism Games
+    <svg viewBox="0 0 10 10"><path d="M5 1l1 3h3l-2.5 2 1 3L5 7.5 2.5 9l1-3L1 4h3z" fill="currentColor"/></svg>
+  </div>
   <h1>Play Free Games<br><span>Instantly, Anywhere</span></h1>
   <p>200+ unblocked games. No downloads, no sign-up — just play.</p>
 </div>
@@ -319,277 +369,404 @@ nav{
 <div class="wrapper">
   <div id="games-grid"></div>
   <div class="empty-state" id="emptyState">
-    <div class="icon">🎮</div>
+    <div class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" width="38" height="38">
+        <circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/><path d="M9 11h4M11 9v4" stroke-opacity=".4"/>
+      </svg>
+    </div>
     <div style="font-weight:700;color:var(--text);margin-bottom:4px">No games found</div>
-    <div>Try a different search or category</div>
+    <div style="font-size:.82rem">Try a different search or category</div>
   </div>
 </div>
 
 <!-- SCROLL TOP -->
 <div id="scrolltop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <svg viewBox="0 0 24 24"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+  <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
 </div>
 
 <script>
-// ── BASE URL ──
-// All sz-games paths replaced with your GitHub Pages URL
 const BASE = 'https://venoxexec.github.io';
 
-// ── GAMES DATA ──
-// Format: { name, cat, url, img, tag? }
+// ─────────────────────────────────────────────
+// GAMES DATA  (name, cat, url, img, tag)
 // tag: 'hot' | 'new' | 'pop' | ''
+// ─────────────────────────────────────────────
 const GAMES = [
-  // ── POPULAR / FEATURED ──
-  {name:'Slope',            cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/slope/`,                  img:`${BASE}/cover/slope.webp`,         tag:'pop'},
-  {name:'1v1 LOL',          cat:'Fighting Shooter Multiplayer', url:`${BASE}/games/game.html?game=${BASE}/Games-2/lol/`,img:`${BASE}/cover/lol.webp`,           tag:'hot'},
-  {name:'Minecraft',        cat:'Casual Adventure Sandbox Multiplayer', url:`${BASE}/games/game.html?game=${BASE}/storage3/AWeb`, img:`${BASE}/cover/Minecraft.png`, tag:'pop'},
-  {name:'Bitlife',          cat:'Casual',          url:`${BASE}/Games9/bitlife`,                                        img:`${BASE}/cover/Bitlife.png`,        tag:'hot'},
-  {name:'Run 3',            cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Run3/tn6pS9dCf37xAhkJv`,  img:`${BASE}/cover/run3s.webp`,         tag:'pop'},
-  {name:'Geometry Dash',    cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/geometry-dash-lite`,img:`${BASE}/cover/geo.jpeg`,          tag:'hot'},
-  {name:'Pizza Tower',      cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/pizzatower`,       img:`${BASE}/cover/pizzatower.png`,     tag:'new'},
-  {name:'Plants vs Zombies',cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games11/pvz.swf`,         img:`${BASE}/cover/pvz.png`,            tag:'pop'},
-  {name:'Retro Bowl',       cat:'Casual Sports',   url:`${BASE}/games/game.html?game=${BASE}/Games11/retro-bowl/game`,  img:`${BASE}/cover/retrobowl.avif`,     tag:'hot'},
-  {name:'Pac-Man',          cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/pacman`,                  img:`${BASE}/cover/pacman.jfif`,        tag:''},
-  {name:'Polytrack',        cat:'Driver',          url:`${BASE}/games/Flash.html?game=${BASE}/Games11/polytrack/index.html`, img:`${BASE}/cover/polytrack.png`, tag:'new'},
-  {name:'Idle Breakout',    cat:'Casual Idle',     url:`${BASE}/games/game.html?game=${BASE}/Games11/idle-breakout/`,   img:`${BASE}/cover/idlebr.png`,         tag:''},
-  {name:'Super Smash Flash 2',cat:'Action',        url:`${BASE}/games/Flash.html?game=${BASE}/Games11/super-smash-flash-2.swf`, img:`${BASE}/cover/SuperSmash2.png`, tag:'hot'},
-  {name:'Duck Life',        cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games11/ducklife1/game.swf`, img:`${BASE}/cover/ducklife.avif`,  tag:''},
-  {name:'Duck Life 2',      cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games11/ducklife2/game.swf`, img:`${BASE}/cover/ducklife.avif`,  tag:''},
-  {name:'Duck Life 3',      cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games11/ducklife3/game.swf`, img:`${BASE}/cover/ducklife.avif`,  tag:''},
-  {name:'Duck Life 4',      cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games11/ducklife4/game.swf`, img:`${BASE}/cover/ducklife.avif`,  tag:''},
-  {name:'The Impossible Quiz',cat:'Casual',        url:`${BASE}/games/Flash.html?game=${BASE}/Games11/The_Impossible_Quiz.swf`, img:`${BASE}/cover/impqz.png`,  tag:''},
-  {name:'Blumgi Slime',     cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/slime/Blumgi Slime.html`, img:`${BASE}/cover/blumgisl.jpeg`,tag:''},
-  {name:'Tube Jumpers',     cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/tube-jumpers`,     img:`${BASE}/cover/tubej.png`,          tag:''},
-  {name:'Basket Random',    cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/basketrandom`,     img:`${BASE}/cover/basketr.png`,        tag:''},
-  {name:'Boxing Random',    cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/boxingrandom`,     img:`${BASE}/cover/boxingr.png`,        tag:''},
-  {name:'BasketBros',       cat:'Sports',          url:`${BASE}/games/game.html?game=${BASE}/Games11/basketbros`,       img:`${BASE}/cover/BASKETBRO.png`,      tag:''},
-  {name:'Awesome Tanks 2',  cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/awesometanks2`,    img:`${BASE}/cover/tankawe2.png`,       tag:''},
-  {name:'Magic Tiles 3',    cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/magictiles/`,      img:`${BASE}/cover/magictiles.png`,     tag:''},
-  {name:'Block Blast',      cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games11/blockblast/game.html`, img:`${BASE}/cover/blockblast.jpg`,tag:'new'},
-  {name:'Scrap Metal 3',    cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games11/scrapmetal/`,      img:`${BASE}/cover/scrapm.jfif`,        tag:''},
-  {name:'Osu Mania',        cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/Osu.html`,         img:`${BASE}/cover/osus.png`,           tag:''},
-  {name:'Cat Tennis',       cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/cat tennis`,       img:`${BASE}/cover/cattennis.png`,      tag:''},
-  {name:'Fall Guys Remake', cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/StumbleGuysIG.html`, img:`${BASE}/cover/fallg.png`,       tag:'new'},
-  {name:'Madness: Project Nexus',cat:'Casual',     url:`${BASE}/games/Flash.html?game=${BASE}/Games11/madness.swf`,     img:`${BASE}/cover/madness.png`,        tag:''},
-  {name:'Mortal Kombat Rev.',cat:'Action',         url:`${BASE}/games/game.html?game=${BASE}/RetroGames/MortalKombatRevelations.html`, img:`${BASE}/cover/mkrev.png`,tag:''},
-  {name:'Donkey Kong GBA',  cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/RetroGames/Classic NES Donkey Kong.html`, img:`${BASE}/cover/donkeykong.png`,tag:''},
-  {name:'SNES Mario Kart',  cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/RetroGames/smariokart.html`, img:`${BASE}/cover/snesmariokart.png`,tag:''},
-  {name:'Binding of Isaac', cat:'Casual Adventure',url:`${BASE}/games/Flash.html?game=${BASE}/Games11/the_binding_of_isaac.swf`, img:`${BASE}/cover/isaacb.png`,tag:''},
-  {name:'Rocket Pult',      cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/rocketp/`,         img:`${BASE}/cover/rocketp.png`,        tag:''},
-  {name:'Cluster Truck',    cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/cluster truck/`,   img:`${BASE}/cover/cluster.png`,        tag:''},
-  {name:'Bottle Flip',      cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/bottle-flip/game`, img:`${BASE}/cover/bottleflip.jpg`,     tag:''},
-  {name:'Drift Boss',       cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games11/drift-boss/game`,  img:`${BASE}/cover/driftbosss.jpg`,     tag:''},
-  {name:'Crazy Cars',       cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games11/crazy-cars/game`,  img:`${BASE}/cover/crazycars.jpg`,      tag:''},
-  {name:'Bitburner',        cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/bitburner-dev/bitburner-dev/`, img:`${BASE}/cover/bitburner.png`,tag:''},
-  {name:'Learn To Fly 3',   cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games11/Learn-To-Fly-3.swf`, img:`${BASE}/cover/ltf3.webp`,      tag:''},
-  {name:'Run',              cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games11/run1/game.swf`,   img:`${BASE}/cover/run1.png`,           tag:''},
-  {name:"World's Hardest Game 3",cat:'Casual',     url:`${BASE}/games/Flash.html?game=${BASE}/Games11/worldshardestgame3.swf`, img:`${BASE}/cover/whg3.png`,   tag:''},
-  {name:'DashCraft.io',     cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games11/dashcraft/index.html`, img:`${BASE}/cover/dashcr.jfif`,   tag:'new'},
-  {name:'Gobble',           cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games11/Gobble/Gobble.html`, img:`${BASE}/cover/gobble.avif`,    tag:''},
+  // ── FEATURED / POPULAR ──
+  {name:'Slope',               cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/slope/`,                                         img:`${BASE}/cover/slope.webp`,           tag:'pop'},
+  {name:'1v1 LOL',             cat:'Fighting Shooter Multiplayer', url:`${BASE}/games/game.html?game=${BASE}/Games-2/lol/`,                              img:`${BASE}/cover/lol.webp`,             tag:'hot'},
+  {name:'Minecraft',           cat:'Casual Adventure Sandbox Multiplayer', url:`${BASE}/games/game.html?game=${BASE}/storage3/AWeb`,                     img:`${BASE}/cover/Minecraft.png`,        tag:'pop'},
+  {name:'Bitlife',             cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games9/bitlife`,                                 img:`${BASE}/cover/Bitlife.png`,          tag:'hot'},
+  {name:'Run 3',               cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Run3/tn6pS9dCf37xAhkJv`,                        img:`${BASE}/cover/run3s.webp`,           tag:'pop'},
+  {name:'Geometry Dash',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/geometry-dash-lite`,                    img:`${BASE}/cover/geo.jpeg`,             tag:'hot'},
+  {name:'Pizza Tower',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/pizzatower`,                            img:`${BASE}/cover/pizzatower.png`,       tag:'new'},
+  {name:'Plants vs Zombies',   cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games11/pvz.swf`,                              img:`${BASE}/cover/pvz.png`,              tag:'pop'},
+  {name:'Retro Bowl',          cat:'Casual Sports',            url:`${BASE}/games/game.html?game=${BASE}/Games11/retro-bowl/game`,                       img:`${BASE}/cover/retrobowl.avif`,       tag:'hot'},
+  {name:'Pac-Man',             cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/pacman`,                                        img:`${BASE}/cover/pacman.jfif`,          tag:''},
+  {name:'Polytrack',           cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/polytrack/index.html`,                  img:`${BASE}/cover/polytrack.png`,        tag:'new'},
+  {name:'Idle Breakout',       cat:'Casual Idle',              url:`${BASE}/games/game.html?game=${BASE}/Games11/idle-breakout/`,                        img:`${BASE}/cover/idlebr.png`,           tag:''},
+  {name:'Super Smash Flash 2', cat:'Action',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games11/super-smash-flash-2.swf`,              img:`${BASE}/cover/SuperSmash2.png`,      tag:'hot'},
+  {name:'Duck Life',           cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games11/ducklife1/game.swf`,                   img:`${BASE}/cover/ducklife.avif`,        tag:''},
+  {name:'Duck Life 2',         cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games11/ducklife2/game.swf`,                   img:`${BASE}/cover/ducklife.avif`,        tag:''},
+  {name:'Duck Life 3',         cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games11/ducklife3/game.swf`,                   img:`${BASE}/cover/ducklife.avif`,        tag:''},
+  {name:'Duck Life 4',         cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games11/ducklife4/game.swf`,                   img:`${BASE}/cover/ducklife.avif`,        tag:''},
+  {name:'The Impossible Quiz', cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games11/The_Impossible_Quiz.swf`,              img:`${BASE}/cover/impqz.png`,            tag:''},
+  {name:'Blumgi Slime',        cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/slime/Blumgi Slime.html`,               img:`${BASE}/cover/blumgisl.jpeg`,        tag:''},
+  {name:'Blumgi Rocket',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/blumgi-rocket/game`,                   img:`${BASE}/storage3/NOMG.png`,          tag:''},
+  {name:'Tube Jumpers',        cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/tube-jumpers`,                          img:`${BASE}/cover/tubej.png`,            tag:''},
+  {name:'Basket Random',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/basketrandom`,                          img:`${BASE}/cover/basketr.png`,          tag:''},
+  {name:'Boxing Random',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/boxingrandom`,                          img:`${BASE}/cover/boxingr.png`,          tag:''},
+  {name:'BasketBros',          cat:'Sports',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/basketbros`,                            img:`${BASE}/cover/BASKETBRO.png`,        tag:''},
+  {name:'Awesome Tanks 2',     cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/awesometanks2`,                         img:`${BASE}/cover/tankawe2.png`,         tag:''},
+  {name:'Magic Tiles 3',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/magictiles/`,                           img:`${BASE}/cover/magictiles.png`,       tag:''},
+  {name:'Block Blast',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/blockblast/game.html`,                  img:`${BASE}/cover/blockblast.jpg`,       tag:'new'},
+  {name:'Scrap Metal 3',       cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/scrapmetal/`,                           img:`${BASE}/cover/scrapm.jfif`,          tag:''},
+  {name:'Osu Mania',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/Osu.html`,                              img:`${BASE}/cover/osus.png`,             tag:''},
+  {name:'Cat Tennis',          cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/cat tennis`,                            img:`${BASE}/cover/cattennis.png`,        tag:''},
+  {name:'Fall Guys Remake',    cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/StumbleGuysIG.html`,                    img:`${BASE}/cover/fallg.png`,            tag:'new'},
+  {name:'Madness Project Nexus',cat:'Casual',                  url:`${BASE}/games/Flash.html?game=${BASE}/Games11/madness.swf`,                          img:`${BASE}/cover/madness.png`,          tag:''},
+  {name:'Mortal Kombat Rev.',  cat:'Action',                   url:`${BASE}/games/game.html?game=${BASE}/RetroGames/MortalKombatRevelations.html`,       img:`${BASE}/cover/mkrev.png`,            tag:''},
+  {name:'Donkey Kong GBA',     cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/RetroGames/Classic NES Donkey Kong.html`,       img:`${BASE}/cover/donkeykong.png`,       tag:''},
+  {name:'SNES Mario Kart',     cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/RetroGames/smariokart.html`,                    img:`${BASE}/cover/snesmariokart.png`,    tag:''},
+  {name:'Binding of Isaac',    cat:'Casual Adventure',         url:`${BASE}/games/Flash.html?game=${BASE}/Games11/the_binding_of_isaac.swf`,             img:`${BASE}/cover/isaacb.png`,           tag:''},
+  {name:'Rocket Pult',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/rocketp/`,                              img:`${BASE}/cover/rocketp.png`,          tag:''},
+  {name:'Cluster Truck',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/cluster truck/`,                        img:`${BASE}/cover/cluster.png`,          tag:''},
+  {name:'Bottle Flip',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/bottle-flip/game`,                      img:`${BASE}/cover/bottleflip.jpg`,       tag:''},
+  {name:'Drift Boss',          cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/drift-boss/game`,                       img:`${BASE}/cover/driftbosss.jpg`,       tag:''},
+  {name:'Crazy Cars',          cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/crazy-cars/game`,                       img:`${BASE}/cover/crazycars.jpg`,        tag:''},
+  {name:'Bitburner',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/bitburner-dev/bitburner-dev/`,          img:`${BASE}/cover/bitburner.png`,        tag:''},
+  {name:'Learn To Fly 3',      cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games11/Learn-To-Fly-3.swf`,                   img:`${BASE}/cover/ltf3.webp`,            tag:''},
+  {name:'Run',                 cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games11/run1/game.swf`,                        img:`${BASE}/cover/run1.png`,             tag:''},
+  {name:"World's Hardest Game 3",cat:'Casual',                 url:`${BASE}/games/Flash.html?game=${BASE}/Games11/worldshardestgame3.swf`,               img:`${BASE}/cover/whg3.png`,             tag:''},
+  {name:'DashCraft.io',        cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/dashcraft/index.html`,                  img:`${BASE}/cover/dashcr.jfif`,          tag:'new'},
+  {name:'Gobble',              cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games11/Gobble/Gobble.html`,                    img:`${BASE}/cover/gobble.avif`,          tag:''},
+  {name:'Super Smash Flash',   cat:'Action',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games5/swf/Super Smash Flash.swf`,             img:`${BASE}/cover/YU90.webp`,            tag:''},
   // ── GAMES 10 ──
-  {name:'Five Nights at Winstons',cat:'Casual Horror', url:`${BASE}/games/game.html?game=${BASE}/Games10/fnaw/index.html`, img:'https://github.com/sz-games/Games10/raw/main/fnaw/splash.png',tag:''},
-  {name:'Kitchen Gun',      cat:'Casual Shooter',  url:`${BASE}/games/game.html?game=${BASE}/Games10/kitchen-gun-game/index.html`, img:'https://github.com/sz-games/Games10/raw/main/kitchen-gun-game/splash.png',tag:''},
-  {name:'Noob Steve Parkour',cat:'Casual',         url:`${BASE}/games/game.html?game=${BASE}/Games10/noob-steve-parkour/index.html`, img:'https://github.com/sz-games/Games10/raw/main/noob-steve-parkour/512x512.jpg',tag:''},
-  {name:'Popcat Classic',   cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games10/popcat-classic/index.html`, img:'https://github.com/sz-games/Games10/raw/main/popcat-classic/splash.png',tag:''},
-  {name:'PolyBranch',       cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games10/polybranch/index.html`, img:'https://github.com/sz-games/Games10/raw/main/polybranch/img/pic1.png',tag:''},
-  {name:'Papery Planes',    cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games10/papery-planes/index.html`, img:'https://github.com/sz-games/Games10/raw/main/papery-planes/splash.jpg',tag:''},
-  {name:'The Heist',        cat:'Casual Driver',   url:`${BASE}/games/game.html?game=${BASE}/Games10/theheist/index.html`, img:'https://github.com/sz-games/Games10/raw/main/theheist/theheist.jpg',tag:''},
-  {name:'Push Your Luck',   cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games2/push-your-luck/index.html`, img:'https://github.com/sz-games/Games2/raw/main/push-your-luck/assets/img/push.png',tag:''},
-  {name:'Geodash',          cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games10/geodash/index.html`, img:`${BASE}/cover/geo.jpeg`,         tag:''},
+  {name:'Five Nights at Winstons',cat:'Casual Horror',         url:`${BASE}/games/game.html?game=${BASE}/Games10/fnaw/index.html`,                       img:'https://github.com/sz-games/Games10/raw/main/fnaw/splash.png',   tag:''},
+  {name:'Kitchen Gun',         cat:'Casual Shooter',           url:`${BASE}/games/game.html?game=${BASE}/Games10/kitchen-gun-game/index.html`,           img:'https://github.com/sz-games/Games10/raw/main/kitchen-gun-game/splash.png', tag:''},
+  {name:'Noob Steve Parkour',  cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games10/noob-steve-parkour/index.html`,         img:'https://github.com/sz-games/Games10/raw/main/noob-steve-parkour/512x512.jpg', tag:''},
+  {name:'Popcat Classic',      cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games10/popcat-classic/index.html`,             img:'https://github.com/sz-games/Games10/raw/main/popcat-classic/splash.png', tag:''},
+  {name:'PolyBranch',          cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games10/polybranch/index.html`,                 img:'https://github.com/sz-games/Games10/raw/main/polybranch/img/pic1.png', tag:''},
+  {name:'Papery Planes',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games10/papery-planes/index.html`,              img:'https://github.com/sz-games/Games10/raw/main/papery-planes/splash.jpg', tag:''},
+  {name:'The Heist',           cat:'Casual Driver',            url:`${BASE}/games/game.html?game=${BASE}/Games10/theheist/index.html`,                   img:'https://github.com/sz-games/Games10/raw/main/theheist/theheist.jpg', tag:''},
+  {name:'Push Your Luck',      cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/push-your-luck/index.html`,              img:'https://github.com/sz-games/Games2/raw/main/push-your-luck/assets/img/push.png', tag:''},
+  {name:'Grey Box Testing',    cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games9/greybox/index.html`,                     img:`${BASE}/cover/greybox.png`,          tag:''},
+  {name:'Geodash',             cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games10/geodash/index.html`,                    img:`${BASE}/cover/geo.jpeg`,             tag:''},
   // ── GAMES 9 ──
-  {name:'FNAF',             cat:'Casual Horror',   url:`${BASE}/games/game.html?game=${BASE}/Games9/fnaf-1/index.html`, img:`${BASE}/cover/fnaf1.jpeg`,        tag:'pop'},
-  {name:'FNAF 2',           cat:'Casual Horror',   url:`${BASE}/games/game.html?game=${BASE}/Games4/fnaf-2/index.html`, img:`${BASE}/cover/fnaf2.webp`,        tag:''},
-  {name:'FNAF 3',           cat:'Casual Horror',   url:`${BASE}/games/game.html?game=${BASE}/Games9/fnaf-3/index.html`, img:`${BASE}/cover/fnaf3.webp`,        tag:''},
-  {name:'FNAF 4',           cat:'Casual Horror',   url:`${BASE}/games/game.html?game=${BASE}/Games9/fnaf-4/index.html`, img:`${BASE}/cover/fnaf4.jpeg`,        tag:''},
-  {name:'FNAF Sister Location',cat:'Casual Horror',url:`${BASE}/games/game.html?game=${BASE}/Games5/fnafsl.html`,       img:`${BASE}/cover/SL1109.png`,        tag:''},
-  {name:'Super Hot',        cat:'Casual Shooter',  url:`${BASE}/games/game.html?game=${BASE}/Games9/superhot/index.html`, img:`${BASE}/cover/superhot.jpeg`,   tag:'hot'},
-  {name:'Bitlife',          cat:'Casual',          url:`${BASE}/Games9/bitlife`,                                        img:`${BASE}/cover/Bitlife.png`,        tag:''},
-  {name:'A Dance of Fire & Ice',cat:'Casual',      url:`${BASE}/games/game.html?game=${BASE}/Games9/a-dance-of-fire-and-ice`, img:`${BASE}/cover/geo.jpeg`,    tag:''},
-  {name:'Fruit Ninja',      cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games9/fruitninja/`,       img:`${BASE}/cover/FRUITNINJA.png`,    tag:''},
-  {name:'Uno',              cat:'Casual Multiplayer',url:`${BASE}/games/game.html?game=${BASE}/Games9/uno/index.html`,  img:`${BASE}/cover/uno.png`,            tag:''},
-  {name:'Marvel vs Capcom', cat:'Action',          url:`${BASE}/games/game.html?game=${BASE}/Games9/MARVELVSCAPCOM`,   img:`${BASE}/cover/MVSCAPCOM.png`,      tag:''},
-  {name:'Tanuki Sunset',    cat:'Driver',          url:`${BASE}/games/unity.html?game=${BASE}/Games9/TANUKISUNSET`,    img:`${BASE}/cover/TANUKISUNSET.png`,   tag:'new'},
-  {name:'Bango Cat',        cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games9/BANGOCAT`,         img:`${BASE}/cover/BANGOCAT.png`,       tag:''},
-  {name:'Music Ball',       cat:'Casual',          url:`${BASE}/games/unity.html?game=${BASE}/Games9/MUSICBALL`,       img:`${BASE}/cover/MUSICBALL.png`,      tag:''},
-  {name:'Tomb of the Mask', cat:'Casual',          url:`${BASE}/games/unity.html?game=${BASE}/Games9/tomb`,            img:`${BASE}/cover/tomball.png`,        tag:''},
-  {name:'Roblox',           cat:'Casual',          url:`${BASE}/roblox.html`,                                          img:`${BASE}/cover/roblox.jpeg`,        tag:''},
-  {name:'Cyber Tunnel',     cat:'Driver',          url:`${BASE}/games/unity.html?game=${BASE}/Games9/CYBERTUNNEL`,     img:`${BASE}/cover/cybertun.png`,       tag:''},
-  {name:'EXO',              cat:'Casual Sandbox Idle',url:`${BASE}/games/game.html?game=${BASE}/Games9/EXO`,           img:`${BASE}/cover/EXOOO.png`,          tag:''},
-  {name:'Minecraft Tower Defence',cat:'Casual',    url:`${BASE}/games/Flash.html?game=${BASE}/Games9/mftd.swf`,        img:`${BASE}/cover/mtd.png`,            tag:''},
-  {name:'Minecraft Tower Defence 2',cat:'Casual',  url:`${BASE}/games/Flash.html?game=${BASE}/Games9/mftd2.swf`,       img:`${BASE}/cover/mtd2.png`,           tag:''},
-  {name:'Hard Golf',        cat:'Casual Sports',   url:`${BASE}/games/game.html?game=${BASE}/Games9/HARDGOLF/`,        img:`${BASE}/cover/hardgolf.png`,       tag:''},
-  {name:'Archer Hero',      cat:'Casual Shooter',  url:`${BASE}/games/game.html?game=${BASE}/Games9/archer-hero/unblocked`, img:`${BASE}/cover/0987N.png`,    tag:''},
+  {name:'FNAF',                cat:'Casual Horror',            url:`${BASE}/games/game.html?game=${BASE}/Games9/fnaf-1/index.html`,                      img:`${BASE}/cover/fnaf1.jpeg`,           tag:'pop'},
+  {name:'FNAF 2',              cat:'Casual Horror',            url:`${BASE}/games/game.html?game=${BASE}/Games4/fnaf-2/index.html`,                      img:`${BASE}/cover/fnaf2.webp`,           tag:''},
+  {name:'FNAF 3',              cat:'Casual Horror',            url:`${BASE}/games/game.html?game=${BASE}/Games9/fnaf-3/index.html`,                      img:`${BASE}/cover/fnaf3.webp`,           tag:''},
+  {name:'FNAF 4',              cat:'Casual Horror',            url:`${BASE}/games/game.html?game=${BASE}/Games9/fnaf-4/index.html`,                      img:`${BASE}/cover/fnaf4.jpeg`,           tag:''},
+  {name:'FNAF Sister Location',cat:'Casual Horror',            url:`${BASE}/games/game.html?game=${BASE}/Games5/fnafsl.html`,                            img:`${BASE}/cover/SL1109.png`,           tag:''},
+  {name:'Super Hot',           cat:'Casual Shooter',           url:`${BASE}/games/game.html?game=${BASE}/Games9/superhot/index.html`,                    img:`${BASE}/cover/superhot.jpeg`,        tag:'hot'},
+  {name:'A Dance of Fire & Ice',cat:'Casual',                  url:`${BASE}/games/game.html?game=${BASE}/Games9/a-dance-of-fire-and-ice`,                img:`${BASE}/cover/geo.jpeg`,             tag:''},
+  {name:'Fruit Ninja',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games9/fruitninja/`,                            img:`${BASE}/cover/FRUITNINJA.png`,       tag:''},
+  {name:'Uno',                 cat:'Casual Multiplayer',       url:`${BASE}/games/game.html?game=${BASE}/Games9/uno/index.html`,                         img:`${BASE}/cover/uno.png`,              tag:''},
+  {name:'Marvel vs Capcom',    cat:'Action',                   url:`${BASE}/games/game.html?game=${BASE}/Games9/MARVELVSCAPCOM`,                         img:`${BASE}/cover/MVSCAPCOM.png`,        tag:''},
+  {name:'Tanuki Sunset',       cat:'Driver',                   url:`${BASE}/games/unity.html?game=${BASE}/Games9/TANUKISUNSET`,                          img:`${BASE}/cover/TANUKISUNSET.png`,     tag:'new'},
+  {name:'Bango Cat',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games9/BANGOCAT`,                               img:`${BASE}/cover/BANGOCAT.png`,         tag:''},
+  {name:'Music Ball',          cat:'Casual',                   url:`${BASE}/games/unity.html?game=${BASE}/Games9/MUSICBALL`,                             img:`${BASE}/cover/MUSICBALL.png`,        tag:''},
+  {name:'Tomb of the Mask',    cat:'Casual',                   url:`${BASE}/games/unity.html?game=${BASE}/Games9/tomb`,                                  img:`${BASE}/cover/tomball.png`,          tag:''},
+  {name:'Roblox',              cat:'Casual',                   url:`${BASE}/roblox.html`,                                                                img:`${BASE}/cover/roblox.jpeg`,          tag:''},
+  {name:'Cyber Tunnel',        cat:'Driver',                   url:`${BASE}/games/unity.html?game=${BASE}/Games9/CYBERTUNNEL`,                           img:`${BASE}/cover/cybertun.png`,         tag:''},
+  {name:'EXO',                 cat:'Casual Sandbox Idle',      url:`${BASE}/games/game.html?game=${BASE}/Games9/EXO`,                                    img:`${BASE}/cover/EXOOO.png`,            tag:''},
+  {name:'Minecraft Tower Defence',cat:'Casual',                url:`${BASE}/games/Flash.html?game=${BASE}/Games9/mftd.swf`,                              img:`${BASE}/cover/mtd.png`,              tag:''},
+  {name:'Minecraft TD 2',      cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games9/mftd2.swf`,                             img:`${BASE}/cover/mtd2.png`,             tag:''},
+  {name:'The Bowling Club',    cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games9/thebowlingclub/`,                        img:`${BASE}/cover/thebowlingclub.png`,   tag:''},
+  {name:'Hard Golf',           cat:'Casual Sports',            url:`${BASE}/games/game.html?game=${BASE}/Games9/HARDGOLF/`,                              img:`${BASE}/cover/hardgolf.png`,         tag:''},
+  {name:'Archer Hero',         cat:'Casual Shooter',           url:`${BASE}/games/game.html?game=${BASE}/Games9/archer-hero/unblocked`,                  img:`${BASE}/cover/0987N.png`,            tag:''},
   // ── GAMES 8 ──
-  {name:'Yoshi Fabrication',cat:'Adventure',       url:`${BASE}/games/game.html?game=${BASE}/Games8/yoshifabrication`, img:`${BASE}/cover/YOSHIFABR.png`,     tag:''},
-  {name:'Zombie Shooter',   cat:'Shooter',         url:`${BASE}/games/game.html?game=${BASE}/Games8/ZOMBIESHOOTER`,    img:`${BASE}/cover/ZOMBIESHOOTER.png`,  tag:''},
-  {name:'Sniper Shot',      cat:'Shooter',         url:`${BASE}/games/game.html?game=${BASE}/Games8/SNIPERFIXED`,      img:`${BASE}/cover/SNIPERSHOTBT.png`,   tag:''},
-  {name:'Neon Flytron',     cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games8/NEONFLYTRON`,      img:`${BASE}/cover/NEOFLYTRON.png`,     tag:''},
-  {name:'City Driver',      cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games8/CITYDRIVER`,       img:`${BASE}/cover/CITYDRIVER.png`,     tag:''},
-  {name:'Granny Clone',     cat:'Horror',          url:`${BASE}/games/game.html?game=${BASE}/Games8/GRANNY`,           img:`${BASE}/cover/GRANNY.png`,         tag:''},
-  {name:'Going Balls',      cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games8/goingballs`,       img:`${BASE}/cover/GOINGBALLS.png`,     tag:''},
-  {name:'Build Bridges',    cat:'Casual Sandbox',  url:`${BASE}/games/game.html?game=${BASE}/Games8/BUILDBRIDGES`,     img:`${BASE}/cover/BUILDBRIDGES.png`,   tag:''},
-  {name:'Money Rush',       cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games8/MONEYRUSH`,        img:`${BASE}/cover/MONEYRUSH.png`,      tag:''},
-  {name:'Draw Drive',       cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games8/DRAWDRIVE`,        img:`${BASE}/cover/DRAWDRIVE.png`,      tag:''},
-  {name:'Zombie Shooter: Wave',cat:'Shooter',      url:`${BASE}/games/game.html?game=${BASE}/Games8/ZOMBIESHOOTERWAVEOFZOMS`, img:`${BASE}/cover/ZOMBIESHOOTERWAVE.png`,tag:''},
-  {name:'Flip the Gun',     cat:'Casual Shooter',  url:`${BASE}/games/game.html?game=${BASE}/Games8/FLIPTHEGUN`,       img:`${BASE}/cover/FLIPTHEGUNSH.png`,   tag:''},
-  {name:'Paper Fold',       cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games8/paper-fold`,       img:`${BASE}/cover/PAPERFOLD.png`,      tag:''},
-  {name:'Only Up Clone',    cat:'Casual Adventure',url:`${BASE}/games/game.html?game=${BASE}/Games8/only-up`,         img:`${BASE}/cover/ONLYUPCLONE.png`,    tag:''},
-  {name:'Funny Battle 2',   cat:'Casual Sandbox Shooter',url:`${BASE}/games/game.html?game=${BASE}/Games8/FUNNYBATTLE2`, img:`${BASE}/cover/FUNNYBATTLE2.png`,tag:''},
-  {name:'3D Noob Destroyer',cat:'Casual Shooter',  url:`${BASE}/games/game.html?game=${BASE}/Games8/3DNOOBDESTROYER`,  img:`${BASE}/cover/3DnoobD.png`,        tag:''},
-  {name:'AirBattle',        cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games8/AIRBATTLE`,        img:`${BASE}/cover/AIRBATTLE.png`,      tag:''},
-  {name:'Builder',          cat:'Casual Sandbox',  url:`${BASE}/games/game.html?game=${BASE}/Games8/BUILDER`,          img:`${BASE}/cover/BUILDERV.png`,       tag:''},
-  {name:'Stickman Tour Kart',cat:'Driver',         url:`${BASE}/games/game.html?game=${BASE}/Games8/STICKMANTOURKART`, img:`${BASE}/cover/STICKMANTK.png`,    tag:''},
-  {name:'You vs 100 Skibidi',cat:'Shooter',        url:`${BASE}/games/unity.html?game=${BASE}/Games8/youvs100SK`,      img:`${BASE}/cover/YOUVSSK.png`,        tag:''},
-  {name:'Battle for Gondor',cat:'Action Adventure',url:`${BASE}/games/Flash.html?game=${BASE}/Games8/battle-for-gondor.swf`, img:`${BASE}/cover/BATTLEFORGONDOR.png`,tag:''},
-  {name:'Cell Machine',     cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games8/cell-machine`,     img:`${BASE}/cover/CELLMACHINE.png`,    tag:''},
-  {name:'Donut Boy',        cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games8/donut-boy`,        img:`${BASE}/cover/DONUTBOY.png`,       tag:''},
-  {name:'President Simulator',cat:'Casual',        url:`${BASE}/games/game.html?game=${BASE}/Games8/president-simulator`, img:`${BASE}/cover/PRESSIM.png`,    tag:''},
-  {name:'Kids vs Icecream', cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games8/kids_vs_icecream.swf`, img:`${BASE}/cover/KIDSVSICECREAM.png`,tag:''},
+  {name:'Yoshi Fabrication',   cat:'Adventure',                url:`${BASE}/games/game.html?game=${BASE}/Games8/yoshifabrication`,                       img:`${BASE}/cover/YOSHIFABR.png`,        tag:''},
+  {name:'Zombie Shooter',      cat:'Shooter',                  url:`${BASE}/games/game.html?game=${BASE}/Games8/ZOMBIESHOOTER`,                          img:`${BASE}/cover/ZOMBIESHOOTER.png`,    tag:''},
+  {name:'Sniper Shot',         cat:'Shooter',                  url:`${BASE}/games/game.html?game=${BASE}/Games8/SNIPERFIXED`,                            img:`${BASE}/cover/SNIPERSHOTBT.png`,     tag:''},
+  {name:'Neon Flytron',        cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games8/NEONFLYTRON`,                            img:`${BASE}/cover/NEOFLYTRON.png`,       tag:''},
+  {name:'City Driver',         cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games8/CITYDRIVER`,                             img:`${BASE}/cover/CITYDRIVER.png`,       tag:''},
+  {name:'Granny Clone',        cat:'Horror',                   url:`${BASE}/games/game.html?game=${BASE}/Games8/GRANNY`,                                 img:`${BASE}/cover/GRANNY.png`,           tag:''},
+  {name:'Going Balls',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games8/goingballs`,                             img:`${BASE}/cover/GOINGBALLS.png`,       tag:''},
+  {name:'Build Bridges',       cat:'Casual Sandbox',           url:`${BASE}/games/game.html?game=${BASE}/Games8/BUILDBRIDGES`,                           img:`${BASE}/cover/BUILDBRIDGES.png`,     tag:''},
+  {name:'Money Rush',          cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games8/MONEYRUSH`,                              img:`${BASE}/cover/MONEYRUSH.png`,        tag:''},
+  {name:'Draw Drive',          cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games8/DRAWDRIVE`,                              img:`${BASE}/cover/DRAWDRIVE.png`,        tag:''},
+  {name:'Zombie Shooter: Wave',cat:'Shooter',                  url:`${BASE}/games/game.html?game=${BASE}/Games8/ZOMBIESHOOTERWAVEOFZOMS`,                img:`${BASE}/cover/ZOMBIESHOOTERWAVE.png`,tag:''},
+  {name:'Flip the Gun',        cat:'Casual Shooter',           url:`${BASE}/games/game.html?game=${BASE}/Games8/FLIPTHEGUN`,                             img:`${BASE}/cover/FLIPTHEGUNSH.png`,     tag:''},
+  {name:'Paper Fold',          cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games8/paper-fold`,                             img:`${BASE}/cover/PAPERFOLD.png`,        tag:''},
+  {name:'Only Up Clone',       cat:'Casual Adventure',         url:`${BASE}/games/game.html?game=${BASE}/Games8/only-up`,                                img:`${BASE}/cover/ONLYUPCLONE.png`,      tag:''},
+  {name:'Funny Battle 2',      cat:'Casual Sandbox Shooter',   url:`${BASE}/games/game.html?game=${BASE}/Games8/FUNNYBATTLE2`,                           img:`${BASE}/cover/FUNNYBATTLE2.png`,     tag:''},
+  {name:'3D Noob Destroyer',   cat:'Casual Shooter',           url:`${BASE}/games/game.html?game=${BASE}/Games8/3DNOOBDESTROYER`,                        img:`${BASE}/cover/3DnoobD.png`,          tag:''},
+  {name:'AirBattle',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games8/AIRBATTLE`,                              img:`${BASE}/cover/AIRBATTLE.png`,        tag:''},
+  {name:'Builder',             cat:'Casual Sandbox',           url:`${BASE}/games/game.html?game=${BASE}/Games8/BUILDER`,                                img:`${BASE}/cover/BUILDERV.png`,         tag:''},
+  {name:'Stickman Tour Kart',  cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games8/STICKMANTOURKART`,                       img:`${BASE}/cover/STICKMANTK.png`,       tag:''},
+  {name:'You vs 100 Skibidi',  cat:'Shooter',                  url:`${BASE}/games/unity.html?game=${BASE}/Games8/youvs100SK`,                            img:`${BASE}/cover/YOUVSSK.png`,          tag:''},
+  {name:'Battle for Gondor',   cat:'Action Adventure',         url:`${BASE}/games/Flash.html?game=${BASE}/Games8/battle-for-gondor.swf`,                 img:`${BASE}/cover/BATTLEFORGONDOR.png`,  tag:''},
+  {name:'Cell Machine',        cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games8/cell-machine`,                           img:`${BASE}/cover/CELLMACHINE.png`,      tag:''},
+  {name:'Donut Boy',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games8/donut-boy`,                              img:`${BASE}/cover/DONUTBOY.png`,         tag:''},
+  {name:'President Simulator', cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games8/president-simulator`,                    img:`${BASE}/cover/PRESSIM.png`,          tag:''},
+  {name:'Kids vs Icecream',    cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games8/kids_vs_icecream.swf`,                  img:`${BASE}/cover/KIDSVSICECREAM.png`,   tag:''},
+  {name:'Ultimate Destruction Sim',cat:'Casual',               url:`${BASE}/games/game.html?game=${BASE}/Games8/ULTIMATEDS`,                             img:`${BASE}/cover/ULDSl.png`,            tag:''},
   // ── GAMES 7 ──
-  {name:'Slowroads',        cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games7/slowroads`,        img:`${BASE}/cover/SLOWROADS.png`,      tag:''},
-  {name:'Snow Rider 3D',    cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games7/snow-rider3d/`,    img:`${BASE}/cover/snowrider.png`,      tag:'hot'},
-  {name:'Fear the Spotlight',cat:'Horror',         url:`${BASE}/games/game.html?game=${BASE}/Games7/fearthespotlight/`, img:`${BASE}/cover/FEARTHESPOT.png`,  tag:''},
-  {name:'Basketball Stars', cat:'Casual Multiplayer Sports',url:`${BASE}/games/game.html?game=${BASE}/Games7/basketball-stars`, img:`${BASE}/cover/bscLeg.avif`,tag:''},
-  {name:'Tiny Fishing',     cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games7/tiny-fishing`,     img:`${BASE}/cover/TINYFISH.png`,       tag:''},
-  {name:'Vex 3',            cat:'Casual Adventure',url:`${BASE}/games/game.html?game=${BASE}/Games7/vex3`,             img:`${BASE}/cover/vex3.png`,           tag:''},
-  {name:'Vex 4',            cat:'Casual Adventure',url:`${BASE}/games/game.html?game=${BASE}/Games7/vex4`,             img:`${BASE}/cover/vex3.png`,           tag:''},
-  {name:'Vex 5',            cat:'Casual Adventure',url:`${BASE}/games/game.html?game=${BASE}/Games7/vex5`,             img:`${BASE}/cover/vex3.png`,           tag:''},
-  {name:'Vex 6',            cat:'Casual Adventure',url:`${BASE}/games/game.html?game=${BASE}/Games7/vex6`,             img:`${BASE}/cover/vex3.png`,           tag:''},
-  {name:'Vex 7',            cat:'Casual Adventure',url:`${BASE}/games/game.html?game=${BASE}/Games7/vex3`,             img:`${BASE}/cover/vex3.png`,           tag:''},
-  {name:'Big Tower Tiny Square',cat:'Casual',      url:`${BASE}/games/game.html?game=${BASE}/Games7/btts`,             img:`${BASE}/cover/BTTS.png`,           tag:''},
-  {name:'Getting Over It',  cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games7/getting-over-it`,  img:`${BASE}/cover/gettingoverit.png`,  tag:''},
-  {name:'Just Fall',        cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games7/just-fall`,        img:`${BASE}/cover/JSTFALL.png`,        tag:''},
-  {name:'Small World Cup',  cat:'Casual Sports',   url:`${BASE}/games/game.html?game=${BASE}/Games7/smallworldcup/`,   img:`${BASE}/cover/smallwrld.png`,      tag:''},
-  {name:'Web OSU',          cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games7/osu`,              img:`${BASE}/cover/OSU.webp`,           tag:''},
-  {name:'Mindustry',        cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games7/mindustry`,        img:`${BASE}/cover/MINEDUST.png`,       tag:''},
-  {name:'Raftwars',         cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games7/raftwars.swf`,    img:`${BASE}/cover/RAFTWARS.png`,       tag:''},
-  {name:'Pandemic 2',       cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games7/pandemic2.swf`,   img:`${BASE}/cover/PANDEM2.png`,        tag:''},
-  {name:'Bloons TD',        cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games7/bloonstd.swf`,    img:`${BASE}/cover/btd.png`,            tag:''},
-  {name:'Bloons TD 3',      cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games7/btd3.swf`,        img:`${BASE}/cover/btd3.png`,           tag:''},
-  {name:'Bloons TD 4',      cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games7/bloonstd4.swf`,   img:`${BASE}/cover/btd4.png`,           tag:''},
-  {name:'Bloons TD 5',      cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games7/btd5.swf`,        img:`${BASE}/cover/btd3.png`,           tag:''},
-  {name:'Survival Mode',    cat:'Shooter',         url:`${BASE}/games/zombie`,                                         img:`${BASE}/cover/SurMode.webp`,       tag:''},
-  {name:'Gravity Soccer',   cat:'Casual Sports',   url:`${BASE}/games/game.html?game=${BASE}/Games7/gravity-soccer`,   img:`${BASE}/cover/GRAVSOCCER.png`,     tag:''},
-  {name:'Sans Fight',       cat:'Action',          url:`${BASE}/games/game.html?game=${BASE}/Games6/sansfight`,        img:`${BASE}/cover/SANSFIGHT.png`,      tag:''},
-  {name:'Drift Hunters',    cat:'Driver',          url:`${BASE}/games/game.html?game=https://webglmath.github.io/drift-hunters/`, img:`${BASE}/cover/drift-hunters.png`,tag:'hot'},
-  {name:'Snowbattle.io',    cat:'Casual Multiplayer',url:`${BASE}/games/game.html?game=${BASE}/Games7/snowbattle`,     img:`${BASE}/cover/snowbattle.jpeg`,    tag:''},
+  {name:'Slowroads',           cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/slowroads`,                              img:`${BASE}/cover/SLOWROADS.png`,        tag:''},
+  {name:'Snow Rider 3D',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/snow-rider3d/`,                          img:`${BASE}/cover/snowrider.png`,        tag:'hot'},
+  {name:'Fear the Spotlight',  cat:'Horror',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/fearthespotlight/`,                      img:`${BASE}/cover/FEARTHESPOT.png`,      tag:''},
+  {name:'Basketball Stars',    cat:'Casual Multiplayer Sports', url:`${BASE}/games/game.html?game=${BASE}/Games7/basketball-stars`,                      img:`${BASE}/cover/bscLeg.avif`,          tag:''},
+  {name:'Tiny Fishing',        cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/tiny-fishing`,                           img:`${BASE}/cover/TINYFISH.png`,         tag:''},
+  {name:'Vex 3',               cat:'Casual Adventure',         url:`${BASE}/games/game.html?game=${BASE}/Games7/vex3`,                                   img:`${BASE}/cover/vex3.png`,             tag:''},
+  {name:'Vex 4',               cat:'Casual Adventure',         url:`${BASE}/games/game.html?game=${BASE}/Games7/vex4`,                                   img:`${BASE}/cover/vex3.png`,             tag:''},
+  {name:'Vex 5',               cat:'Casual Adventure',         url:`${BASE}/games/game.html?game=${BASE}/Games7/vex5`,                                   img:`${BASE}/cover/vex3.png`,             tag:''},
+  {name:'Vex 6',               cat:'Casual Adventure',         url:`${BASE}/games/game.html?game=${BASE}/Games7/vex6`,                                   img:`${BASE}/cover/vex3.png`,             tag:''},
+  {name:'Vex 7',               cat:'Casual Adventure',         url:`${BASE}/games/game.html?game=${BASE}/Games7/vex3`,                                   img:`${BASE}/cover/vex3.png`,             tag:''},
+  {name:'Big Tower Tiny Square',cat:'Casual',                  url:`${BASE}/games/game.html?game=${BASE}/Games7/btts`,                                   img:`${BASE}/cover/BTTS.png`,             tag:''},
+  {name:'Getting Over It',     cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/getting-over-it`,                        img:`${BASE}/cover/gettingoverit.png`,    tag:''},
+  {name:'Just Fall',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/just-fall`,                              img:`${BASE}/cover/JSTFALL.png`,          tag:''},
+  {name:'Small World Cup',     cat:'Casual Sports',            url:`${BASE}/games/game.html?game=${BASE}/Games7/smallworldcup/`,                         img:`${BASE}/cover/smallwrld.png`,        tag:''},
+  {name:'Web OSU',             cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/osu`,                                    img:`${BASE}/cover/OSU.webp`,             tag:''},
+  {name:'Mindustry',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/mindustry`,                              img:`${BASE}/cover/MINEDUST.png`,         tag:''},
+  {name:'Raftwars',            cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games7/raftwars.swf`,                          img:`${BASE}/cover/RAFTWARS.png`,         tag:''},
+  {name:'Pandemic 2',          cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games7/pandemic2.swf`,                         img:`${BASE}/cover/PANDEM2.png`,          tag:''},
+  {name:'Bloons TD',           cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games7/bloonstd.swf`,                          img:`${BASE}/cover/btd.png`,              tag:''},
+  {name:'Bloons TD 3',         cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games7/btd3.swf`,                              img:`${BASE}/cover/btd3.png`,             tag:''},
+  {name:'Bloons TD 4',         cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games7/bloonstd4.swf`,                         img:`${BASE}/cover/btd4.png`,             tag:''},
+  {name:'Bloons TD 5',         cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games7/btd5.swf`,                              img:`${BASE}/cover/btd3.png`,             tag:''},
+  {name:'Survival Mode',       cat:'Shooter',                  url:`${BASE}/games/zombie`,                                                               img:`${BASE}/cover/SurMode.webp`,         tag:''},
+  {name:'Gravity Soccer',      cat:'Casual Sports',            url:`${BASE}/games/game.html?game=${BASE}/Games7/gravity-soccer`,                         img:`${BASE}/cover/GRAVSOCCER.png`,       tag:''},
+  {name:'Sans Fight',          cat:'Action',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/sansfight`,                              img:`${BASE}/cover/SANSFIGHT.png`,        tag:''},
+  {name:'Drift Hunters',       cat:'Driver',                   url:`${BASE}/games/game.html?game=https://webglmath.github.io/drift-hunters/`,            img:`${BASE}/cover/drift-hunters.png`,    tag:'hot'},
+  {name:'Snowbattle.io',       cat:'Casual Multiplayer',       url:`${BASE}/games/game.html?game=${BASE}/Games7/snowbattle`,                             img:`${BASE}/cover/snowbattle.jpeg`,      tag:''},
+  {name:'Tactical Assassin 2', cat:'Shooter',                  url:`${BASE}/games/Flash.html?game=${BASE}/Games7/tacticalassasin2.swf`,                  img:`${BASE}/cover/TACASSASIN.png`,       tag:''},
+  {name:'Very Very Plane',     cat:'Casual',                   url:`${BASE}/games/unity.html?game=${BASE}/Games7/vvplane`,                               img:`${BASE}/cover/VVPLANE.png`,          tag:''},
+  {name:'Waterworks',          cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/waterworks`,                             img:`${BASE}/cover/WWH.png`,              tag:''},
+  {name:'Station Meltdown',    cat:'Action',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/station-meltdown/`,                      img:`${BASE}/cover/stationmelt.png`,      tag:''},
+  {name:'Stackball',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/stackball/`,                             img:`${BASE}/cover/stackball.png`,        tag:''},
+  {name:'Pokey Stick',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/pokey-stick/`,                           img:`${BASE}/cover/stickpo.png`,          tag:''},
+  {name:'Gun Spinn',           cat:'Casual Shooter',           url:`${BASE}/games/game.html?game=${BASE}/Games7/gunspinn/`,                              img:`${BASE}/cover/gunnn.png`,            tag:''},
+  {name:'Breaklock',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/breaklock/`,                             img:`${BASE}/cover/BREAKLOCK.png`,        tag:''},
+  {name:'Gopher Kart',         cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/gopher-kart`,                            img:`${BASE}/cover/gopherkart.png`,       tag:''},
+  {name:'Mario Combat',        cat:'Action',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games7/Mario_Combat.swf`,                      img:`${BASE}/cover/MARIOK.png`,           tag:''},
+  {name:'Color Combat',        cat:'Action',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games7/color_combat.swf`,                      img:`${BASE}/cover/COLORCOM.png`,         tag:''},
+  {name:'MS Flight Sim',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/msflight/`,                              img:`${BASE}/cover/MS4.png`,              tag:''},
+  {name:'Nightwalk',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/nightwalk/`,                             img:`${BASE}/cover/nightwalk.png`,        tag:''},
+  {name:'Pong',                cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games7/pong.swf`,                              img:`${BASE}/cover/pong.png`,             tag:''},
+  {name:"Don't Touch Anything",cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/touch/`,                                 img:`${BASE}/cover/dontouch.png`,         tag:''},
+  {name:'Gun Master',          cat:'Shooter',                  url:`${BASE}/games/game.html?game=${BASE}/Games7/gun-master/`,                            img:`${BASE}/cover/GUNMASTER.png`,        tag:''},
+  {name:'10-103',              cat:'Adventure Shooter Horror', url:`${BASE}/games/unity.html?game=${BASE}/Games7/10-103/`,                               img:`${BASE}/cover/10103.png`,            tag:''},
+  {name:'Thermomorph',         cat:'Horror',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/thermomorph/`,                           img:`${BASE}/cover/THERMO.png`,           tag:''},
+  {name:'Radius Raid',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/radius-raid`,                            img:`${BASE}/cover/RADIUSRAID.png`,       tag:''},
+  {name:'Roadblocks',          cat:'Casual Sandbox',           url:`${BASE}/games/game.html?game=${BASE}/Games7/roadblocks`,                             img:`${BASE}/cover/ROADBLOCKS.png`,       tag:''},
+  {name:'Edge Not Found',      cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/edgenotfound`,                           img:`${BASE}/cover/EDGENOTFOUND.png`,     tag:''},
+  {name:'Cyber City Driver',   cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/cyber-city-driver`,                      img:`${BASE}/cover/CYBERCITYD.png`,       tag:''},
+  {name:'Creative Kill Chamber',cat:'Casual Shooter',          url:`${BASE}/games/Flash.html?game=${BASE}/Games7/creativekillchamber.swf`,               img:`${BASE}/cover/23CkillC.png`,         tag:''},
+  {name:'Make Sure Its Closed',cat:'Horror',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/makesureitsclosed`,                      img:`${BASE}/cover/MSIC.png`,             tag:''},
+  {name:'Black Hole io',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/eatio`,                                  img:`${BASE}/cover/HOLEIO.png`,           tag:''},
+  {name:'Flappy 2048',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/flappy-2048`,                            img:`${BASE}/cover/FLAPPY2048.png`,       tag:''},
+  {name:'Steal This Election', cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/steal-this-election`,                    img:`${BASE}/cover/STEALTE.png`,          tag:''},
+  {name:'Web Retro Emulator',  cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/webretro`,                               img:`${BASE}/cover/WEBRETRO.png`,         tag:''},
+  {name:'X Trial Racing',      cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/x-trial-racing`,                         img:`${BASE}/cover/XTRIAL.png`,           tag:''},
+  {name:'Ball Hop',            cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/ball-hop`,                               img:`${BASE}/cover/ballhop.png`,          tag:''},
+  {name:'Sky Car Stunt',       cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/sky-car-stunt`,                          img:`${BASE}/cover/SKYCARSTUNT.png`,      tag:''},
+  {name:'Slime Rush TD',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/slime-rush-td`,                          img:`${BASE}/cover/SLIMERUSH.png`,        tag:''},
+  {name:'Blackjack',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/blackjack`,                              img:`${BASE}/cover/BLACKJACK.png`,        tag:''},
+  {name:'Biters io',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/biters-io`,                              img:`${BASE}/cover/BITERS.png`,           tag:''},
+  {name:'Matrix Rampage',      cat:'Shooter',                  url:`${BASE}/games/Flash.html?game=${BASE}/Games7/matrixrampage.swf`,                     img:`${BASE}/cover/MATRIXR.png`,          tag:''},
+  {name:'Weavesilk',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/weavesilk/`,                             img:`${BASE}/cover/weavesilk.png`,        tag:''},
+  {name:'Train Ride',          cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/trainride/`,                             img:`${BASE}/cover/trainride.png`,        tag:''},
+  {name:'Tower Master',        cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/towermaster/`,                           img:`${BASE}/cover/towermaster.png`,      tag:''},
+  {name:'Offline Paradise',    cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/OfflineParadise`,                        img:`${BASE}/cover/OFFP.png`,             tag:''},
+  {name:'Very Normal Shooter', cat:'Shooter',                  url:`${BASE}/games/game.html?game=${BASE}/Games7/verynormalshooter`,                      img:`${BASE}/cover/VERYNORSH.png`,        tag:''},
+  {name:'Miniputt',            cat:'Casual Sports',            url:`${BASE}/games/Flash.html?game=${BASE}/Games7/miniputt.swf`,                          img:`${BASE}/cover/miniputt.png`,         tag:''},
+  {name:'Fake Update',         cat:'Casual',                   url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/MENU`,                   img:`${BASE}/cover/FAKEUP.png`,           tag:''},
   // ── GAMES 6 ──
-  {name:'Time Shooter 3',   cat:'Shooter',         url:`${BASE}/games/game.html?game=${BASE}/Games6/timeshoot3/`,      img:`${BASE}/cover/SWATSH.png`,         tag:'hot'},
-  {name:'Moto X3M',         cat:'Driver',          url:`${BASE}/games/game.html?game=https://tbg95.github.io/moto-x3m/game`, img:`${BASE}/cover/motox3m.png`, tag:''},
-  {name:'Moto X3M 2',       cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games5/motox3m2`,         img:`${BASE}/cover/X3M2.png`,           tag:''},
-  {name:'Moto X3M Pool Party',cat:'Driver',        url:`${BASE}/games/game.html?game=${BASE}/Games5/motox3m-pool`,     img:`${BASE}/cover/X3M3.avif`,          tag:''},
-  {name:'Moto X3M Spooky',  cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games5/motox3m-spooky`,   img:`${BASE}/cover/X3M9.png`,           tag:''},
-  {name:'Moto X3M Winter',  cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games5/motox3m-winter`,   img:`${BASE}/cover/X3M5.jpeg`,          tag:''},
-  {name:'Madalin Stunt Cars 2',cat:'Driver',       url:`${BASE}/games/game.html?game=${BASE}/Games2/madalin-stunt-cars-2`, img:`${BASE}/cover/113347.jpeg`,    tag:'pop'},
-  {name:'Madalin Stunt Cars 3',cat:'Driver',       url:`${BASE}/games/game.html?game=${BASE}/Games2/madalin-stunt-cars-3`, img:`${BASE}/cover/11456.webp`,     tag:''},
-  {name:'Drift Boss',       cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games6/drift-boss`,       img:`${BASE}/cover/DRIFTBOSS.jpeg`,     tag:''},
-  {name:'Eggycar',          cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games6/eggycar`,          img:`${BASE}/cover/EGGYCAR.webp`,       tag:''},
-  {name:'OvO',              cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games5/ovo`,              img:`${BASE}/cover/OVO.png`,            tag:''},
-  {name:'Stickman Hook',    cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games5/stickman-hook`,    img:`${BASE}/cover/890P.jpeg`,          tag:''},
-  {name:'Drive Mad',        cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games5/drive-mad`,        img:`${BASE}/cover/drive-mad.jpg`,      tag:''},
-  {name:'Cut the Rope',     cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games5/ctr`,              img:`${BASE}/cover/ctr.png`,            tag:''},
-  {name:'Cut the Rope 2',   cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games5/ctr-holiday`,      img:`${BASE}/cover/ctr2.png`,           tag:''},
-  {name:'Cut the Rope 3',   cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games5/ctr-tr`,           img:`${BASE}/cover/tr3.png`,            tag:''},
-  {name:'Bad Ice Cream',    cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games5/bad-ice-cream`,    img:`${BASE}/cover/BICEC.png`,          tag:''},
-  {name:'Bad Ice Cream 2',  cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games5/bad-ice-cream-2`,  img:`${BASE}/cover/BICEC2.webp`,        tag:''},
-  {name:'Bad Ice Cream 3',  cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games5/bad-ice-cream-3`,  img:`${BASE}/cover/BICEC3.png`,         tag:''},
-  {name:'Fireboy & Watergirl 2',cat:'Casual Adventure Multiplayer',url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/Game11-FIRE.swf`, img:`${BASE}/cover/FireW.png`,tag:''},
-  {name:'10 Minutes Till Dawn',cat:'Adventure Action',url:`${BASE}/games/game.html?game=${BASE}/Games5/10-minutes-till-dawn`, img:`${BASE}/cover/10MINB.webp`,tag:''},
-  {name:'Angry Birds',      cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games5/AngryBirds/`,      img:`${BASE}/cover/0991L.webp`,         tag:''},
-  {name:'HexGL',            cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games5/HexGL-master/`,    img:`${BASE}/cover/HexGl.jpeg`,         tag:''},
-  {name:'Jetpack Joyride',  cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games5/jetpack-joyride/`, img:`${BASE}/cover/jetpackjoyride.webp`,tag:''},
-  {name:'Pixel Gun Apocalypse 2',cat:'Shooter Action',url:`${BASE}/games/game.html?game=${BASE}/Games5/pixelgun/`,     img:`${BASE}/cover/PIXEL901.png`,       tag:''},
-  {name:'Adventure Drivers',cat:'Adventure Driver',url:`${BASE}/games/game.html?game=${BASE}/Games5/adventure-drivers`, img:`${BASE}/cover/0098K.avif`,       tag:''},
-  {name:'Time Shooter 2',   cat:'Shooter',         url:`${BASE}/games/game.html?game=${BASE}/Games5/time-shooter-2/index.html`, img:`${BASE}/cover/time-shooter-2.jpg`,tag:''},
-  {name:'Super Mario Bros', cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games4/SuperMario/`,      img:`${BASE}/cover/091h.png`,           tag:''},
-  {name:'Little Alchemy 2', cat:'Casual',          url:`${BASE}/games/game.html?game=https://littlealchemy2.com/`,     img:`${BASE}/cover/LACH2.jpeg`,         tag:''},
-  {name:'Rooftop Snipers',  cat:'Shooter',         url:`${BASE}/games/game.html?game=${BASE}/games/rooftop-snipers/`,  img:`${BASE}/cover/rooftop-snipers.png`,tag:''},
-  {name:'Happy Wheels',     cat:'Casual',          url:`${BASE}/games/game.html?game=https://mrsnailman.github.io/Happy-Wheels-Source-Code/`, img:`${BASE}/cover/NOMGG.png`,tag:''},
-  {name:"World's Hardest Game",cat:'Casual',       url:`${BASE}/games/Flash.html?game=${BASE}/Games5/swf/TheWorldsHardestGame.swf`, img:`${BASE}/cover/5BL.webp`,tag:''},
-  {name:"World's Hardest Game 2",cat:'Casual',     url:`${BASE}/games/Flash.html?game=${BASE}/Games5/swf/Worlds Hardest Game 2.swf`, img:`${BASE}/cover/59BJ.jpeg`,tag:''},
-  {name:'Super Smash Flash',cat:'Action',          url:`${BASE}/games/Flash.html?game=${BASE}/Games5/swf/Super Smash Flash.swf`, img:`${BASE}/cover/YU90.webp`,tag:''},
-  {name:'2048',             cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games2/20481`,            img:`${BASE}/cover/2048.png`,           tag:'pop'},
-  {name:'Wordle',           cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games2/wordle`,           img:`${BASE}/cover/wordle.webp`,        tag:''},
-  {name:'Subway Surfers',   cat:'Casual',          url:`${BASE}/games/game.html?game=https://dddavit.github.io/subway/`, img:`${BASE}/cover/sub.webp`,        tag:''},
-  {name:'Chrome Dino',      cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/games/dino`,              img:`${BASE}/cover/dino.webp`,          tag:''},
-  {name:'Tetris',           cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games9/Tetris2.swf`,     img:`${BASE}/cover/tetris.webp`,        tag:''},
-  {name:'Paper.io 2',       cat:'Casual Multiplayer',url:`${BASE}/games/game.html?game=${BASE}/Games/paperio2/index.html`, img:`${BASE}/cover/paperio.webp`,   tag:''},
-  {name:"Papa's Burgeria",  cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/papasburgeria.swf`, img:`${BASE}/cover/papasbur.webp`,tag:''},
-  {name:"Papa's Scooperia", cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games9/papasscooperia.swf`, img:`${BASE}/cover/scoop.jpeg`,     tag:''},
-  {name:"Papa's Sushiria",  cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/papassushiria.swf`, img:`${BASE}/cover/sushiria.jpg`,tag:''},
-  {name:"Papa's Bakeria",   cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/papasbakeria.swf`, img:`${BASE}/cover/bakeria.jpg`,  tag:''},
-  {name:"Papa's Pastaria",  cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/papaspastaria.swf`, img:`${BASE}/cover/pastaria.jpg`,tag:''},
-  {name:"Papa's Cupcakeria",cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/papascupcakeria.swf`, img:`${BASE}/cover/cupcakeria.jpg`,tag:''},
-  {name:"Papa's Pizzeria",  cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/papaspizzeria_v2.swf`, img:`${BASE}/cover/pizzeria.jpg`,tag:''},
-  {name:'Cookie Clicker',   cat:'Casual Idle',     url:`${BASE}/games/game.html?game=https://player.work/cookie-clicker/`, img:'https://github.com/sz-games/sz-games.github.io/blob/main/cover/click.png?raw=true',tag:''},
-  {name:'Agar.io',          cat:'Casual Multiplayer',url:`${BASE}/games/game.html?game=${BASE}/games/agario`,          img:'https://github.com/sz-games/sz-games.github.io/blob/main/cover/agario.jpeg?raw=true',tag:''},
-  {name:'Crossy Road',      cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/cr/`,                     img:'https://github.com/sz-games/storage3/blob/main/cr.jpeg?raw=true',tag:''},
-  {name:'Chess',            cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/games/chess/index.html`,  img:'https://github.com/sz-games/sz-games.github.io/blob/main/cover/chess.png?raw=true',tag:''},
-  {name:'Bloons TD',        cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games7/bloonstd.swf`,    img:`${BASE}/cover/btd.png`,            tag:''},
-  {name:'Sandboxels',       cat:'Casual Sandbox',  url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/sandboxels`, img:'https://mr-funkinguy.github.io/sandboxels/icons/wallpaper.webp',tag:''},
-  {name:'Smash Karts',      cat:'Casual',          url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/75/projects/smashkarts/index.html`, img:'https://github.com/sz-games/sz-games.github.io/blob/main/cover/smash-karts.jpg?raw=true',tag:'hot'},
-  {name:'Street Fighter 2', cat:'Casual Fighting Action',url:`${BASE}/games/game.html?game=${BASE}/games3/fighter2`,   img:`${BASE}/cover/op9p.jpeg`,          tag:''},
-  {name:'Super Mario 64',   cat:'Casual Adventure',url:`${BASE}/Games2/sm64`,                                          img:'https://github.com/sz-games/sz-games.github.io/blob/main/cover/64.jpeg?raw=true',tag:'pop'},
-  {name:'Doodle Jump',      cat:'Casual',          url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/gfile/doodle/index.html`, img:`${BASE}/cover/09ML.avif`,tag:''},
-  {name:'Google Feud',      cat:'Casual',          url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/83/google-feud/index.html`, img:`${BASE}/cover/GFEUD.webp`,tag:''},
-  {name:'Space Cadet Pinball',cat:'Casual',        url:`${BASE}/games/game.html?game=${BASE}/Games6/space-cadet-pinball/`, img:`${BASE}/cover/SPACECADET.png`, tag:''},
-  {name:'Jacksmith',        cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/Games6/jacksmith.swf`,   img:`${BASE}/cover/890Bml.png`,        tag:''},
-  {name:'Google Solitaire', cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games6/google-solitaire`, img:`${BASE}/cover/google-solitaire.png`,tag:''},
-  {name:'8 Ball',           cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games6/8ball`,            img:`${BASE}/cover/8ball.png`,          tag:''},
-  {name:'Doom',             cat:'Shooter Action',  url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/wasmStuff/doom/`, img:`${BASE}/cover/Doom.png`,tag:''},
-  {name:'Snake',            cat:'Casual',          url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/gfile/snake/index.html`, img:`${BASE}/cover/SNAKE.png`,tag:''},
-  {name:'Flappy Bird',      cat:'Casual',          url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/gfile/flappy/index.html`, img:`${BASE}/cover/FlappyBird.png`,tag:''},
-  {name:'Shell Shockers',   cat:'Shooter',         url:`${BASE}/games/game.html?game=https://shellshock.io`,           img:`${BASE}/cover/PIXEL901.png`,       tag:'hot'},
-  {name:'Krunker.io',       cat:'Shooter Multiplayer',url:`${BASE}/games/game.html?game=https://krunker.io`,           img:`${BASE}/cover/PIXEL901.png`,       tag:'hot'},
-  {name:'Friday Night Funkin',cat:'Casual',        url:`${BASE}/FNF.html`,                                             img:`${BASE}/cover/SNAKE.png`,          tag:'hot'},
-  {name:'Bloxd.io',         cat:'Casual',          url:`${BASE}/games/game.html?game=https://bloxd.io`,               img:`${BASE}/cover/Minecraft.png`,      tag:''},
-  {name:'Oregon Trail',     cat:'Adventure',       url:`${BASE}/games/game.html?game=${BASE}/Games6/oregon-trail-game-master/`, img:`${BASE}/cover/OREGONB.png`,tag:''},
-  {name:'Rocket League Clone',cat:'Driver',        url:`${BASE}/games/game.html?game=${BASE}/Games4/Rocket-League/`,   img:`${BASE}/cover/ROCKETL5.png`,       tag:''},
-  {name:'Getaway Shootout', cat:'Shooter Action',  url:`${BASE}/games/game.html?game=${BASE}/Games2/getaway-shootout`, img:`${BASE}/cover/GTEWY.avif`,        tag:''},
-  {name:'Bloxorz',          cat:'Casual',          url:`${BASE}/games/bloxx`,                                          img:'https://github.com/sz-games/sz-games.github.io/blob/main/cover/blox.jpeg?raw=true',tag:''},
-  {name:'Bob the Robber 2', cat:'Casual Adventure',url:`${BASE}/games/game.html?game=${BASE}/Games/bobtherobber2`,     img:`${BASE}/cover/bthe.jpeg`,          tag:''},
-  {name:'Stack',            cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/games/stack`,             img:`${BASE}/cover/Stack.webp`,         tag:''},
-  {name:'Gun Mayhem',       cat:'Shooter Action',  url:`${BASE}/games/Flash.html?game=${BASE}/Games6/gun-mayhem.swf`,  img:`${BASE}/cover/GMYHM.png`,          tag:''},
-  {name:'Gun Mayhem 2',     cat:'Shooter Action',  url:`${BASE}/games/Flash.html?game=${BASE}/Games6/gun-mayhem-2.swf`, img:`${BASE}/cover/GMYHM.png`,        tag:''},
-  {name:'Zombotron',        cat:'Shooter Horror',  url:`${BASE}/games/game.html?game=${BASE}/Games6/zombotron`,        img:`${BASE}/cover/zombotron.webp`,     tag:''},
-  {name:'Jelly Truck',      cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games6/jellytruck`,       img:`${BASE}/cover/JELLYTRCK.png`,      tag:''},
-  {name:'Eggy Car',         cat:'Driver',          url:`${BASE}/games/game.html?game=${BASE}/Games6/eggycar`,          img:`${BASE}/cover/EGGYCAR.webp`,       tag:''},
-  {name:'Blockpost',        cat:'Shooter',         url:`${BASE}/games/game.html?game=${BASE}/Games6/blockpost`,        img:`${BASE}/cover/BLOCKPOST.avif`,     tag:''},
-  {name:'Rolling Sky',      cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games6/webgl-rollingsky/`, img:`${BASE}/cover/SKYRO.png`,        tag:''},
-  {name:'Death Run 3D',     cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games6/death-run-3d/`,    img:`${BASE}/cover/DEATHRUN.png`,       tag:''},
-  {name:'Cubefield',        cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games7/cubefield`,        img:`${BASE}/cover/CUBEF.png`,          tag:''},
-  {name:'Fancy Pants Adventure',cat:'Adventure',   url:`${BASE}/games/Flash.html?game=${BASE}/Games6/fancypantsadventures/fancypantsadventure.swf`, img:`${BASE}/cover/FANCYADV.png`,tag:''},
-  {name:'Sort the Court',   cat:'Casual',          url:`${BASE}/games/unity.html?game=${BASE}/Games6/sort-the-court`,  img:`${BASE}/cover/SORTTHECOURT.png`,  tag:''},
-  {name:'Slope 2',          cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games2/slope-2`,          img:`${BASE}/cover/slope2.png`,         tag:''},
-  {name:'Tunnel Rush',      cat:'Casual',          url:`${BASE}/games/unity.html?game=${BASE}/games/tunnel-rush/`,     img:`${BASE}/cover/tunnel.webp`,        tag:''},
-  {name:'Infinite Tower',   cat:'Casual',          url:`${BASE}/home/webb/`,                                           img:'https://github.com/sz-games/sz-games.github.io/blob/main/cover/helix.webp?raw=true',tag:''},
-  {name:'Learn to Fly',     cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/learntofly.swf`, img:`${BASE}/cover/ltf.png`,        tag:''},
-  {name:'Learn to Fly 2',   cat:'Casual',          url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/learntofly2.swf`, img:`${BASE}/cover/ltf2.jpg`,      tag:''},
-  {name:'Doge Miner',       cat:'Idle',            url:`${BASE}/games/game.html?game=${BASE}/Games4/DogeMiner`,        img:`${BASE}/cover/DGMINER.png`,        tag:''},
-  {name:'Space Company',    cat:'Casual Idle',     url:`${BASE}/games/game.html?game=${BASE}/Games2/spaceCompany`,     img:`${BASE}/cover/spacecompany.png`,   tag:''},
-  {name:'CSGO Clicker',     cat:'Casual Idle',     url:`${BASE}/games/game.html?game=${BASE}/Games/CSGO-CLICKER`,      img:`${BASE}/cover/CSGO.png`,           tag:''},
-  {name:'Big Red Button',   cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/Games6/bigredbutton`,     img:`${BASE}/cover/BRB5.png`,           tag:''},
-  {name:'Sand Game',        cat:'Sandbox',         url:`${BASE}/games/game.html?game=${BASE}/Games6/sand-game`,        img:`${BASE}/cover/SANDGAME.png`,       tag:''},
-  {name:'Townscaper',       cat:'Casual Sandbox',  url:`${BASE}/games/game.html?game=${BASE}/Games2/townscaper`,       img:`${BASE}/cover/townscaper.jpeg`,    tag:''},
-  {name:'Dungeon Warrior',  cat:'Fighting Action', url:`${BASE}/games/dungeon`,                                        img:`${BASE}/cover/DunW.webp`,          tag:''},
-  {name:'Backrooms',        cat:'Horror',          url:`${BASE}/games/unity.html?game=${BASE}/Games/backrooms`,        img:`${BASE}/cover/backroom.webp`,      tag:''},
-  {name:'Slide in the Woods',cat:'Horror',         url:`${BASE}/games/woods`,                                          img:`${BASE}/cover/Slidein.webp`,       tag:''},
-  {name:'Build Now GG',     cat:'Casual Shooter',  url:`${BASE}/games/game.html?game=https://buildnow-gg.io/buildnow-gg.embed`, img:`${BASE}/buildnowgg.png`,  tag:'hot'},
-  {name:'Diep.io',          cat:'Casual Shooter Multiplayer',url:`${BASE}/games/game.html?game=https://diep.io/`,      img:`${BASE}/deepio.jpg`,               tag:''},
-  {name:'Space War',        cat:'Casual Shooter',  url:`${BASE}/games/game.html?game=${BASE}/games/spac/`,             img:`${BASE}/cover/space.webp`,         tag:''},
-  {name:'Brawl Stars (SZ)', cat:'Casual',          url:`${BASE}/games/game.html?game=${BASE}/sz-brawlers.html`,        img:`${BASE}/brawl-stars.jpg`,          tag:'pop'},
-  {name:'Riddle School',    cat:'Casual Adventure',url:`${BASE}/games/Flash.html?game=${BASE}/games/swf/riddd.swf`,    img:`${BASE}/cover/rid.webp`,           tag:''},
-  {name:'Riddle School 2',  cat:'Casual Adventure',url:`${BASE}/games/Flash.html?game=${BASE}/games/swf/riddd2.swf`,   img:`${BASE}/cover/rid2.webp`,          tag:''},
-  {name:'Riddle School 3',  cat:'Casual Adventure',url:`${BASE}/games/Flash.html?game=${BASE}/games/swf/riddd3.swf`,   img:`${BASE}/cover/rid3.webp`,          tag:''},
-  {name:'Riddle School 4',  cat:'Casual Adventure',url:`${BASE}/games/Flash.html?game=${BASE}/games/swf/riddd4.swf`,   img:`${BASE}/cover/rid4.webp`,          tag:''},
-  {name:'Riddle School 5',  cat:'Casual Adventure',url:`${BASE}/games/Flash.html?game=${BASE}/games/swf/riddd5.swf`,   img:`${BASE}/cover/rid5.webp`,          tag:''},
-  {name:'Riddle Transfer',  cat:'Casual Adventure',url:`${BASE}/games/Flash.html?game=${BASE}/games/swf/riddd6.swf`,   img:`${BASE}/cover/rid6.webp`,          tag:''},
-  {name:'Riddle Transfer 2',cat:'Casual Adventure',url:`${BASE}/games/Flash.html?game=${BASE}/games/swf/riddd7.swf`,   img:`${BASE}/cover/rid7.webp`,          tag:''},
-  {name:'Infiltrating the Airship',cat:'Casual Action',url:`${BASE}/games/Flash.html?game=${BASE}/games/henry-airship/infiltratingtheairshipgame.swf`,img:`${BASE}/cover/Airship.webp`,tag:''},
-  {name:'Fleeing the Complex',cat:'Casual Action', url:`${BASE}/games/Flash.html?game=${BASE}/Games6/Henry Stickmin - Fleeing the Complex.swf?raw=true`,img:`${BASE}/cover/Complex.webp`,tag:''},
-  {name:'Escaping the Prison',cat:'Casual Action', url:`${BASE}/games/Flash.html?game=${BASE}/Games7/escaping_the_prison.swf?raw=true`,img:`${BASE}/cover/Prison.webp`,tag:''},
-  {name:'Breaking the Bank',cat:'Casual Action',   url:`${BASE}/games/Flash.html?game=${BASE}/Games6/Henry Stickmin - Breaking the Bank.swf?raw=true`,img:`${BASE}/cover/BankH.webp`,tag:''},
-  {name:'Stealing the Diamond',cat:'Casual Action',url:`${BASE}/games/Flash.html?game=${BASE}/Games6/Henry Stickmin - Stealing the Diamond.swf?raw=true`,img:`${BASE}/cover/StealD.webp`,tag:''},
+  {name:'Time Shooter 3',      cat:'Shooter',                  url:`${BASE}/games/game.html?game=${BASE}/Games6/timeshoot3/`,                            img:`${BASE}/cover/SWATSH.png`,           tag:'hot'},
+  {name:'Moto X3M',            cat:'Driver',                   url:`${BASE}/games/game.html?game=https://tbg95.github.io/moto-x3m/game`,                img:`${BASE}/cover/motox3m.png`,          tag:''},
+  {name:'Moto X3M 2',          cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/motox3m2`,                               img:`${BASE}/cover/X3M2.png`,             tag:''},
+  {name:'Moto X3M Pool Party', cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/motox3m-pool`,                           img:`${BASE}/cover/X3M3.avif`,            tag:''},
+  {name:'Moto X3M Spooky',     cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/motox3m-spooky`,                         img:`${BASE}/cover/X3M9.png`,             tag:''},
+  {name:'Moto X3M Winter',     cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/motox3m-winter`,                         img:`${BASE}/cover/X3M5.jpeg`,            tag:''},
+  {name:'Madalin Stunt Cars 2',cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/madalin-stunt-cars-2`,                   img:`${BASE}/cover/113347.jpeg`,          tag:'pop'},
+  {name:'Madalin Stunt Cars 3',cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/madalin-stunt-cars-3`,                   img:`${BASE}/cover/11456.webp`,           tag:''},
+  {name:'Drift Boss Old',      cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/drift-boss`,                             img:`${BASE}/cover/DRIFTBOSS.jpeg`,       tag:''},
+  {name:'Eggy Car',            cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/eggycar`,                                img:`${BASE}/cover/EGGYCAR.webp`,         tag:''},
+  {name:'OvO',                 cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/ovo`,                                    img:`${BASE}/cover/OVO.png`,              tag:''},
+  {name:'Stickman Hook',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/stickman-hook`,                          img:`${BASE}/cover/890P.jpeg`,            tag:''},
+  {name:'Drive Mad',           cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/drive-mad`,                              img:`${BASE}/cover/drive-mad.jpg`,        tag:''},
+  {name:'Cut the Rope',        cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/ctr`,                                    img:`${BASE}/cover/ctr.png`,              tag:''},
+  {name:'Cut the Rope 2',      cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/ctr-holiday`,                            img:`${BASE}/cover/ctr2.png`,             tag:''},
+  {name:'Cut the Rope 3',      cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/ctr-tr`,                                 img:`${BASE}/cover/tr3.png`,              tag:''},
+  {name:'Bad Ice Cream',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/bad-ice-cream`,                          img:`${BASE}/cover/BICEC.png`,            tag:''},
+  {name:'Bad Ice Cream 2',     cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/bad-ice-cream-2`,                        img:`${BASE}/cover/BICEC2.webp`,          tag:''},
+  {name:'Bad Ice Cream 3',     cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/bad-ice-cream-3`,                        img:`${BASE}/cover/BICEC3.png`,           tag:''},
+  {name:'Fireboy & Watergirl 2',cat:'Casual Adventure Multiplayer',url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/Game11-FIRE.swf`,              img:`${BASE}/cover/FireW.png`,            tag:''},
+  {name:'10 Minutes Till Dawn',cat:'Adventure Action',         url:`${BASE}/games/game.html?game=${BASE}/Games5/10-minutes-till-dawn`,                   img:`${BASE}/cover/10MINB.webp`,          tag:''},
+  {name:'Angry Birds',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/AngryBirds/`,                            img:`${BASE}/cover/0991L.webp`,           tag:''},
+  {name:'HexGL',               cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/HexGL-master/`,                          img:`${BASE}/cover/HexGl.jpeg`,           tag:''},
+  {name:'Jetpack Joyride',     cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/jetpack-joyride/`,                       img:`${BASE}/cover/jetpackjoyride.webp`,  tag:''},
+  {name:'Pixel Gun Apocalypse 2',cat:'Shooter Action',         url:`${BASE}/games/game.html?game=${BASE}/Games5/pixelgun/`,                              img:`${BASE}/cover/PIXEL901.png`,         tag:''},
+  {name:'Adventure Drivers',   cat:'Adventure Driver',         url:`${BASE}/games/game.html?game=${BASE}/Games5/adventure-drivers`,                      img:`${BASE}/cover/0098K.avif`,           tag:''},
+  {name:'Time Shooter 2',      cat:'Shooter',                  url:`${BASE}/games/game.html?game=${BASE}/Games5/time-shooter-2/index.html`,              img:`${BASE}/cover/time-shooter-2.jpg`,   tag:''},
+  {name:'Super Mario Bros',    cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games4/SuperMario/`,                            img:`${BASE}/cover/091h.png`,             tag:''},
+  {name:'Little Alchemy 2',    cat:'Casual',                   url:`${BASE}/games/game.html?game=https://littlealchemy2.com/`,                           img:`${BASE}/cover/LACH2.jpeg`,           tag:''},
+  {name:'Rooftop Snipers',     cat:'Shooter',                  url:`${BASE}/games/game.html?game=${BASE}/games/rooftop-snipers/`,                        img:`${BASE}/cover/rooftop-snipers.png`,  tag:''},
+  {name:'Happy Wheels',        cat:'Casual',                   url:`${BASE}/games/game.html?game=https://mrsnailman.github.io/Happy-Wheels-Source-Code/`,img:`${BASE}/cover/NOMGG.png`,            tag:''},
+  {name:"World's Hardest Game",cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games5/swf/TheWorldsHardestGame.swf`,          img:`${BASE}/cover/5BL.webp`,             tag:''},
+  {name:"World's Hardest Game 2",cat:'Casual',                 url:`${BASE}/games/Flash.html?game=${BASE}/Games5/swf/Worlds Hardest Game 2.swf`,         img:`${BASE}/cover/59BJ.jpeg`,            tag:''},
+  {name:'2048',                cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/20481`,                                  img:`${BASE}/cover/2048.png`,             tag:'pop'},
+  {name:'Wordle',              cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/wordle`,                                  img:`${BASE}/cover/WORDLEE.jpeg`,         tag:''},
+  {name:'Subway Surfers',      cat:'Casual',                   url:`${BASE}/games/game.html?game=https://dddavit.github.io/subway/`,                     img:`${BASE}/cover/sub.webp`,             tag:''},
+  {name:'Chrome Dino',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/games/dino`,                                    img:`${BASE}/cover/dino.webp`,            tag:''},
+  {name:'Tetris',              cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games9/Tetris2.swf`,                           img:`${BASE}/cover/tetris.webp`,          tag:''},
+  {name:'Paper.io 2',          cat:'Casual Multiplayer',       url:`${BASE}/games/game.html?game=${BASE}/Games/paperio2/index.html`,                     img:`${BASE}/cover/paperio.webp`,         tag:''},
+  {name:"Papa's Burgeria",     cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/papasburgeria.swf`,                 img:`${BASE}/cover/papasbur.webp`,        tag:''},
+  {name:"Papa's Scooperia",    cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games9/papasscooperia.swf`,                    img:`${BASE}/cover/scoop.jpeg`,           tag:''},
+  {name:"Papa's Sushiria",     cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/papassushiria.swf`,                 img:`${BASE}/cover/sushiria.jpg`,         tag:''},
+  {name:"Papa's Bakeria",      cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/papasbakeria.swf`,                  img:`${BASE}/cover/bakeria.jpg`,          tag:''},
+  {name:"Papa's Pastaria",     cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/papaspastaria.swf`,                 img:`${BASE}/cover/pastaria.jpg`,         tag:''},
+  {name:"Papa's Cupcakeria",   cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/papascupcakeria.swf`,               img:`${BASE}/cover/cupcakeria.jpg`,       tag:''},
+  {name:"Papa's Pizzeria",     cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/papaspizzeria_v2.swf`,              img:`${BASE}/cover/pizzeria.jpg`,         tag:''},
+  {name:'Cookie Clicker',      cat:'Casual Idle',              url:`${BASE}/games/game.html?game=https://player.work/cookie-clicker/`,                   img:'https://github.com/sz-games/sz-games.github.io/blob/main/cover/click.png?raw=true', tag:''},
+  {name:'Agar.io',             cat:'Casual Multiplayer',       url:`${BASE}/games/game.html?game=${BASE}/games/agario`,                                  img:'https://github.com/sz-games/sz-games.github.io/blob/main/cover/agario.jpeg?raw=true', tag:''},
+  {name:'Crossy Road',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/cr/`,                                           img:'https://github.com/sz-games/storage3/blob/main/cr.jpeg?raw=true', tag:''},
+  {name:'Chess',               cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/games/chess/index.html`,                        img:'https://github.com/sz-games/sz-games.github.io/blob/main/cover/chess.png?raw=true', tag:''},
+  {name:'Sandboxels',          cat:'Casual Sandbox',           url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/sandboxels`,             img:'https://mr-funkinguy.github.io/sandboxels/icons/wallpaper.webp', tag:''},
+  {name:'Smash Karts',         cat:'Casual',                   url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/75/projects/smashkarts/index.html`, img:'https://github.com/sz-games/sz-games.github.io/blob/main/cover/smash-karts.jpg?raw=true', tag:'hot'},
+  {name:'Street Fighter 2',    cat:'Casual Fighting Action',   url:`${BASE}/games/game.html?game=${BASE}/games3/fighter2`,                               img:`${BASE}/cover/op9p.jpeg`,            tag:''},
+  {name:'Super Mario 64',      cat:'Casual Adventure',         url:`${BASE}/Games2/sm64`,                                                                img:'https://github.com/sz-games/sz-games.github.io/blob/main/cover/64.jpeg?raw=true', tag:'pop'},
+  {name:'Doodle Jump',         cat:'Casual',                   url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/gfile/doodle/index.html`,img:`${BASE}/cover/09ML.avif`,            tag:''},
+  {name:'Google Feud',         cat:'Casual',                   url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/83/google-feud/index.html`,img:`${BASE}/cover/GFEUD.webp`,         tag:''},
+  {name:'Space Cadet Pinball', cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/space-cadet-pinball/`,                   img:`${BASE}/cover/SPACECADET.png`,       tag:''},
+  {name:'Jacksmith',           cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/Games6/jacksmith.swf`,                         img:`${BASE}/cover/890Bml.png`,           tag:''},
+  {name:'Google Solitaire',    cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/google-solitaire`,                       img:`${BASE}/cover/google-solitaire.png`, tag:''},
+  {name:'8 Ball',              cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/8ball`,                                  img:`${BASE}/cover/8ball.png`,            tag:''},
+  {name:'Doom',                cat:'Shooter Action',           url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/wasmStuff/doom/`,        img:`${BASE}/cover/Doom.png`,             tag:''},
+  {name:'Snake',               cat:'Casual',                   url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/gfile/snake/index.html`, img:`${BASE}/cover/SNAKE.png`,            tag:''},
+  {name:'Flappy Bird',         cat:'Casual',                   url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/gfile/flappy/index.html`,img:`${BASE}/cover/FlappyBird.png`,       tag:''},
+  {name:'Shell Shockers',      cat:'Shooter',                  url:`${BASE}/games/game.html?game=https://shellshock.io`,                                 img:`${BASE}/cover/PIXEL901.png`,         tag:'hot'},
+  {name:'Krunker.io',          cat:'Shooter Multiplayer',      url:`${BASE}/games/game.html?game=https://krunker.io`,                                    img:`${BASE}/cover/PIXEL901.png`,         tag:'hot'},
+  {name:'Friday Night Funkin', cat:'Casual',                   url:`${BASE}/FNF.html`,                                                                   img:`${BASE}/cover/SNAKE.png`,            tag:'hot'},
+  {name:'Bloxd.io',            cat:'Casual',                   url:`${BASE}/games/game.html?game=https://bloxd.io`,                                      img:`${BASE}/cover/Minecraft.png`,        tag:''},
+  {name:'Oregon Trail',        cat:'Adventure',                url:`${BASE}/games/game.html?game=${BASE}/Games6/oregon-trail-game-master/`,              img:`${BASE}/cover/OREGONB.png`,          tag:''},
+  {name:'Rocket League Clone', cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games4/Rocket-League/`,                         img:`${BASE}/cover/ROCKETL5.png`,         tag:''},
+  {name:'Getaway Shootout',    cat:'Shooter Action',           url:`${BASE}/games/game.html?game=${BASE}/Games2/getaway-shootout`,                       img:`${BASE}/cover/GTEWY.avif`,           tag:''},
+  {name:'Bloxorz',             cat:'Casual',                   url:`${BASE}/games/bloxx`,                                                                img:'https://github.com/sz-games/sz-games.github.io/blob/main/cover/blox.jpeg?raw=true', tag:''},
+  {name:'Bob the Robber 2',    cat:'Casual Adventure',         url:`${BASE}/games/game.html?game=${BASE}/Games/bobtherobber2`,                           img:`${BASE}/cover/bthe.jpeg`,            tag:''},
+  {name:'Stack',               cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/games/stack`,                                   img:`${BASE}/cover/Stack.webp`,           tag:''},
+  {name:'Gun Mayhem',          cat:'Shooter Action',           url:`${BASE}/games/Flash.html?game=${BASE}/Games6/gun-mayhem.swf`,                        img:`${BASE}/cover/GMYHM.png`,            tag:''},
+  {name:'Gun Mayhem 2',        cat:'Shooter Action',           url:`${BASE}/games/Flash.html?game=${BASE}/Games6/gun-mayhem-2.swf`,                      img:`${BASE}/cover/GMYHM.png`,            tag:''},
+  {name:'Zombotron',           cat:'Shooter Horror',           url:`${BASE}/games/game.html?game=${BASE}/Games6/zombotron`,                              img:`${BASE}/cover/zombotron.webp`,       tag:''},
+  {name:'Jelly Truck',         cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/jellytruck`,                             img:`${BASE}/cover/JELLYTRCK.png`,        tag:''},
+  {name:'Rolling Sky',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/webgl-rollingsky/`,                      img:`${BASE}/cover/SKYRO.png`,            tag:''},
+  {name:'Death Run 3D',        cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/death-run-3d/`,                          img:`${BASE}/cover/DEATHRUN.png`,         tag:''},
+  {name:'Cubefield',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games7/cubefield`,                              img:`${BASE}/cover/CUBEF.png`,            tag:''},
+  {name:'Fancy Pants Adventure',cat:'Adventure',               url:`${BASE}/games/Flash.html?game=${BASE}/Games6/fancypantsadventures/fancypantsadventure.swf`,img:`${BASE}/cover/FANCYADV.png`,   tag:''},
+  {name:'Sort the Court',      cat:'Casual',                   url:`${BASE}/games/unity.html?game=${BASE}/Games6/sort-the-court`,                        img:`${BASE}/cover/SORTTHECOURT.png`,     tag:''},
+  {name:'Slope 2',             cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/slope-2`,                                img:`${BASE}/cover/slope2.png`,           tag:''},
+  {name:'Tunnel Rush',         cat:'Casual',                   url:`${BASE}/games/unity.html?game=${BASE}/games/tunnel-rush/`,                           img:`${BASE}/cover/tunnel.webp`,          tag:''},
+  {name:'Infinite Tower',      cat:'Casual',                   url:`${BASE}/home/webb/`,                                                                 img:'https://github.com/sz-games/sz-games.github.io/blob/main/cover/helix.webp?raw=true', tag:''},
+  {name:'Learn to Fly',        cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/learntofly.swf`,                    img:`${BASE}/cover/ltf.png`,              tag:''},
+  {name:'Learn to Fly 2',      cat:'Casual',                   url:`${BASE}/games/Flash.html?game=${BASE}/FlashGames/learntofly2.swf`,                   img:`${BASE}/cover/ltf2.jpg`,             tag:''},
+  {name:'Doge Miner',          cat:'Idle',                     url:`${BASE}/games/game.html?game=${BASE}/Games4/DogeMiner`,                              img:`${BASE}/cover/DGMINER.png`,          tag:''},
+  {name:'Space Company',       cat:'Casual Idle',              url:`${BASE}/games/game.html?game=${BASE}/Games2/spaceCompany`,                           img:`${BASE}/cover/spacecompany.png`,     tag:''},
+  {name:'CSGO Clicker',        cat:'Casual Idle',              url:`${BASE}/games/game.html?game=${BASE}/Games/CSGO-CLICKER`,                            img:`${BASE}/cover/CSGO.png`,             tag:''},
+  {name:'Big Red Button',      cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/bigredbutton`,                           img:`${BASE}/cover/BRB5.png`,             tag:''},
+  {name:'Sand Game',           cat:'Sandbox',                  url:`${BASE}/games/game.html?game=${BASE}/Games6/sand-game`,                              img:`${BASE}/cover/SANDGAME.png`,         tag:''},
+  {name:'Townscaper',          cat:'Casual Sandbox',           url:`${BASE}/games/game.html?game=${BASE}/Games2/townscaper`,                             img:`${BASE}/cover/townscaper.jpeg`,      tag:''},
+  {name:'Dungeon Warrior',     cat:'Fighting Action',          url:`${BASE}/games/dungeon`,                                                              img:`${BASE}/cover/DunW.webp`,            tag:''},
+  {name:'Backrooms',           cat:'Horror',                   url:`${BASE}/games/unity.html?game=${BASE}/Games/backrooms`,                              img:`${BASE}/cover/backroom.webp`,        tag:''},
+  {name:'Slide in the Woods',  cat:'Horror',                   url:`${BASE}/games/woods`,                                                                img:`${BASE}/cover/Slidein.webp`,         tag:''},
+  {name:'Build Now GG',        cat:'Casual Shooter',           url:`${BASE}/games/game.html?game=https://buildnow-gg.io/buildnow-gg.embed`,             img:`${BASE}/buildnowgg.png`,             tag:'hot'},
+  {name:'Diep.io',             cat:'Casual Shooter Multiplayer',url:`${BASE}/games/game.html?game=https://diep.io/`,                                    img:`${BASE}/deepio.jpg`,                 tag:''},
+  {name:'Space War',           cat:'Casual Shooter',           url:`${BASE}/games/game.html?game=${BASE}/games/spac/`,                                   img:`${BASE}/cover/space.webp`,           tag:''},
+  {name:'Brawl Stars (SZ)',    cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/sz-brawlers.html`,                              img:`${BASE}/brawl-stars.jpg`,            tag:'pop'},
+  {name:'Riddle School',       cat:'Casual Adventure',         url:`${BASE}/games/Flash.html?game=${BASE}/games/swf/riddd.swf`,                          img:`${BASE}/cover/rid.webp`,             tag:''},
+  {name:'Riddle School 2',     cat:'Casual Adventure',         url:`${BASE}/games/Flash.html?game=${BASE}/games/swf/riddd2.swf`,                         img:`${BASE}/cover/rid2.webp`,            tag:''},
+  {name:'Riddle School 3',     cat:'Casual Adventure',         url:`${BASE}/games/Flash.html?game=${BASE}/games/swf/riddd3.swf`,                         img:`${BASE}/cover/rid3.webp`,            tag:''},
+  {name:'Riddle School 4',     cat:'Casual Adventure',         url:`${BASE}/games/Flash.html?game=${BASE}/games/swf/riddd4.swf`,                         img:`${BASE}/cover/rid4.webp`,            tag:''},
+  {name:'Riddle School 5',     cat:'Casual Adventure',         url:`${BASE}/games/Flash.html?game=${BASE}/games/swf/riddd5.swf`,                         img:`${BASE}/cover/rid5.webp`,            tag:''},
+  {name:'Riddle Transfer',     cat:'Casual Adventure',         url:`${BASE}/games/Flash.html?game=${BASE}/games/swf/riddd6.swf`,                         img:`${BASE}/cover/rid6.webp`,            tag:''},
+  {name:'Riddle Transfer 2',   cat:'Casual Adventure',         url:`${BASE}/games/Flash.html?game=${BASE}/games/swf/riddd7.swf`,                         img:`${BASE}/cover/rid7.webp`,            tag:''},
+  {name:'Infiltrating the Airship',cat:'Casual Action',        url:`${BASE}/games/Flash.html?game=${BASE}/games/henry-airship/infiltratingtheairshipgame.swf`,img:`${BASE}/cover/Airship.webp`,   tag:''},
+  {name:'Fleeing the Complex', cat:'Casual Action',            url:`${BASE}/games/Flash.html?game=${BASE}/Games6/Henry Stickmin - Fleeing the Complex.swf?raw=true`,img:`${BASE}/cover/Complex.webp`,tag:''},
+  {name:'Escaping the Prison', cat:'Casual Action',            url:`${BASE}/games/Flash.html?game=${BASE}/Games7/escaping_the_prison.swf?raw=true`,      img:`${BASE}/cover/Prison.webp`,          tag:''},
+  {name:'Breaking the Bank',   cat:'Casual Action',            url:`${BASE}/games/Flash.html?game=${BASE}/Games6/Henry Stickmin - Breaking the Bank.swf?raw=true`,img:`${BASE}/cover/BankH.webp`, tag:''},
+  {name:'Stealing the Diamond',cat:'Casual Action',            url:`${BASE}/games/Flash.html?game=${BASE}/Games6/Henry Stickmin - Stealing the Diamond.swf?raw=true`,img:`${BASE}/cover/StealD.webp`,tag:''},
+  // ── GAMES 5 ──
+  {name:'99 Balls',            cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/99balls/`,                               img:`${BASE}/cover/99balls.avif`,         tag:''},
+  {name:'9007199254740992',    cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/9007199254740992/`,                      img:`${BASE}/cover/9900ER.png`,           tag:''},
+  {name:'Angry Sharks',        cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/angry-sharks/`,                          img:`${BASE}/cover/00LM2.png`,            tag:''},
+  {name:'Station 141',         cat:'Casual Action',            url:`${BASE}/games/game.html?game=${BASE}/Games5/station-141/`,                           img:`${BASE}/cover/ST141.png`,            tag:''},
+  {name:'Pipe Riders',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/pipe-riders`,                            img:`${BASE}/cover/098B.png`,             tag:''},
+  {name:'Amazing Rope Police', cat:'Casual Action',            url:`${BASE}/games/game.html?game=${BASE}/Games5/amazing-rope-police`,                    img:`${BASE}/cover/098M.png`,             tag:''},
+  {name:'Defend the Tank',     cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/defend-the-tank`,                        img:`${BASE}/cover/098MN.jpeg`,           tag:''},
+  {name:'Storm the House 2',   cat:'Casual Action',            url:`${BASE}/games/Flash.html?game=${BASE}/Games5/stormthehouse2/StormtheHouse2.swf`,     img:`${BASE}/cover/stormthehouse2.jpg`,   tag:''},
+  {name:'Highway Justice',     cat:'Casual Driver',            url:`${BASE}/games/Flash.html?game=${BASE}/Games5/highway-justice.swf`,                   img:`${BASE}/cover/09KL.jpeg`,            tag:''},
+  {name:'Connect 3',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/connect3`,                               img:`${BASE}/cover/connect3.png`,         tag:''},
+  {name:'Champion Island',     cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games5/champion-island`,                        img:`${BASE}/cover/0091GH.jpeg`,          tag:''},
+  {name:'The Battle',          cat:'Casual Action Shooter',    url:`${BASE}/games/Flash.html?game=${BASE}/Games5/thebattle.swf`,                         img:`${BASE}/cover/eer6.png`,             tag:''},
+  {name:'Mini Shooters',       cat:'Casual Shooter',           url:`${BASE}/games/game.html?game=${BASE}/Games5/mini-shooters/unblocked.html`,           img:`${BASE}/cover/MINI109.png`,          tag:''},
+  // ── GAMES 4 ──
+  {name:'TV Static',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games4/tv-static`,                              img:`${BASE}/cover/STATIC2.png`,          tag:''},
+  {name:'Tactical Weapon Pack 2',cat:'Shooter',                url:`${BASE}/games/game.html?game=${BASE}/Games4/tactical-weapon-pack-2`,                 img:`${BASE}/cover/WPNPK2.png`,           tag:''},
+  {name:'Santy Is Home',       cat:'Horror',                   url:`${BASE}/games/game.html?game=${BASE}/Games4/santy-is-home`,                          img:`${BASE}/cover/SANTYISHOME.png`,      tag:''},
+  {name:'Sushi Unroll',        cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games4/sushi-unroll`,                           img:`${BASE}/cover/UNROLL.png`,           tag:''},
+  {name:'Super Mario Construct',cat:'Casual',                  url:`${BASE}/games/game.html?game=${BASE}/Games4/supermarioconstruct`,                    img:`${BASE}/cover/0034.png`,             tag:''},
+  {name:'Win the Whitehouse',  cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games4/win-the-whitehouse`,                     img:`${BASE}/cover/0035.png`,             tag:''},
+  {name:'Missile Game',        cat:'Action Shooter',           url:`${BASE}/games/game.html?game=${BASE}/Games4/missiles/`,                              img:`${BASE}/cover/1094.png`,             tag:''},
+  {name:'Merge Round Racers',  cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games4/merge-round-racers/`,                    img:`${BASE}/cover/11940.webp`,           tag:''},
+  {name:'Frying Nemo',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games4/frying-nemo/`,                           img:`${BASE}/cover/1190a.png`,            tag:''},
+  {name:'Stick Duel Battle',   cat:'Multiplayer Shooter Action',url:`${BASE}/games/game.html?game=${BASE}/Games4/stick-duel-battle/`,                   img:`${BASE}/cover/1109g.webp`,           tag:''},
+  {name:'Cars Simulator',      cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games4/cars-simulator/`,                        img:`${BASE}/cover/098BU.png`,            tag:''},
+  // ── GAMES 2 ──
+  {name:'Deal or No Deal',     cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/deal-or-no-deal`,                        img:`${BASE}/cover/DOND.webp`,            tag:''},
+  {name:'Economical',          cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/economical`,                             img:`${BASE}/cover/economicle.png`,       tag:''},
+  {name:'Economical 2',        cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/economical2`,                            img:`${BASE}/cover/Economical-2.webp`,    tag:''},
+  {name:'Factory Balls',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/factoryballs`,                           img:`${BASE}/cover/FCTYBalls.avif`,       tag:''},
+  {name:'Grind Craft',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/grindcraft`,                             img:`${BASE}/cover/GrindCraft.jpeg`,      tag:''},
+  {name:'Q1K3',                cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/q1k3`,                                   img:`${BASE}/cover/q1k3.avif`,            tag:''},
+  {name:'Rolly Vortex',        cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/rolly-vortex`,                           img:`${BASE}/cover/RVortrex.png`,         tag:''},
+  {name:'Stack Bump 3D',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/stack-bump-3d`,                          img:`${BASE}/cover/STCKB3.webp`,          tag:''},
+  {name:'Swerve',              cat:'Casual Driver',            url:`${BASE}/games/game.html?game=${BASE}/Games2/swerve`,                                 img:`${BASE}/cover/swerve.webp`,          tag:''},
+  {name:'The Cube',            cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/the-cube-master`,                        img:`${BASE}/cover/TheCube.png`,          tag:''},
+  {name:'The Lost Ball',       cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/the-lost-ball`,                          img:`${BASE}/cover/TheLostBall.png`,      tag:''},
+  {name:'Zelda 3D',            cat:'Adventure',                url:`${BASE}/games/Emulator.html?game=${BASE}/Games2/zelda3d`,                            img:'https://github.com/sz-games/storage3/blob/main/NOMG.png?raw=true', tag:''},
+  {name:'Circles',             cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/circle`,                                 img:`${BASE}/cover/Circles.png`,          tag:''},
+  {name:'Align 4',             cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/align-4`,                                img:`${BASE}/cover/align4.png`,           tag:''},
+  {name:'Among Us (Fan Made)', cat:'Casual Action',            url:`${BASE}/games/game.html?game=${BASE}/Games2/among-us`,                               img:`${BASE}/cover/AmoungUs.jpeg`,        tag:''},
+  {name:'Colorun',             cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/colorun`,                                img:`${BASE}/cover/Coloron.jpeg`,         tag:''},
+  {name:'Craftmine',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games2/craftmine`,                              img:`${BASE}/cover/craftmine.jpeg`,       tag:''},
+  // ── GAMES 6 (continued) ──
+  {name:'Highway Racer',       cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/hwy-rcer`,                               img:`${BASE}/cover/hwy-rcer.png`,         tag:''},
+  {name:'Roommate',            cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/roommate/31`,                            img:`${BASE}/cover/PO09.png`,             tag:''},
+  {name:'1v1 Space',           cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/1v1space`,                               img:`${BASE}/cover/CLOUDS.png`,           tag:''},
+  {name:'Untitled Zombie Game',cat:'Shooter',                  url:`${BASE}/games/game.html?game=https://v6p9d9t4.ssl.hwcdn.net/html/8805247/UZG/index.html`,img:`${BASE}/cover/UZG.png`,          tag:''},
+  {name:'Cupcake 2048',        cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/cupcake2048`,                            img:`${BASE}/cover/2048CC.png`,           tag:''},
+  {name:'Evil Glitch',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/evil-glitch`,                            img:`${BASE}/cover/EVILG.jpeg`,           tag:''},
+  {name:'Cannon Basketball 4', cat:'Sports',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/cannon-basketball-4`,                    img:`${BASE}/cover/CANNONBSKT.png`,       tag:''},
+  {name:'Dragon vs Bricks',    cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/dragon-vs-bricks`,                       img:`${BASE}/cover/67OPY.webp`,           tag:''},
+  {name:'Portal Flash',        cat:'Casual Adventure',         url:`${BASE}/games/Flash.html?game=${BASE}/Games6/portal.swf`,                            img:`${BASE}/cover/PORTALF.png`,          tag:''},
+  {name:'Ice Age Baby',        cat:'Casual',                   url:`${BASE}/games/unity.html?game=${BASE}/Games6/iceagebaby`,                            img:`${BASE}/cover/ICEAGEBABY.png`,       tag:''},
+  {name:'Black Hole Square',   cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/blacholesquare`,                         img:`${BASE}/cover/BLACKHOLESQ.png`,      tag:''},
+  {name:'Virtual OS',          cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/vmlinux`,                                img:`${BASE}/cover/VM78.png`,             tag:''},
+  {name:'30 Dollar Website',   cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/30dollarwebsite`,                        img:`${BASE}/cover/30dollarwebsite.png`,  tag:''},
+  {name:'Animator vs Animation',cat:'Casual',                  url:`${BASE}/games/Flash.html?game=${BASE}/Games6/animatorvsanimation.swf`,               img:`${BASE}/cover/ANMVS.png`,            tag:''},
+  {name:'Ballistic Chickens',  cat:'Shooter',                  url:`${BASE}/games/game.html?game=${BASE}/Games6/ballistic-chickens`,                     img:`${BASE}/cover/BCHK.png`,             tag:''},
+  {name:'Burger and Frights',  cat:'Horror',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/burger-and-frights`,                     img:`${BASE}/cover/BAFy.jpeg`,            tag:''},
+  {name:'Google Baseball',     cat:'Sports',                   url:`${BASE}/games/game.html?game=https://doodlecricket.github.io/doodle-baseball`,       img:`${BASE}/cover/BASEBALLG.png`,        tag:''},
+  {name:'Drift City',          cat:'Driver',                   url:`${BASE}/games/unity.html?game=${BASE}/Games6/drift-city`,                            img:`${BASE}/cover/DRIFTCITY.png`,        tag:''},
+  {name:'Online Racing Game',  cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/cars-master/`,                           img:`${BASE}/cover/CARSMASTER.png`,       tag:''},
+  {name:"Baldi's Basics",      cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/baldis-basics/`,                         img:`${BASE}/cover/BALDIS.png`,           tag:''},
+  {name:'Starwars Movie',      cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/StarWarsMovie.html`,                     img:`${BASE}/cover/STARWARS.png`,         tag:''},
+  {name:'Horde Killer',        cat:'Shooter',                  url:`${BASE}/games/unity.html?game=${BASE}/Games6/horde-killer`,                          img:`${BASE}/cover/HORDEKILLER.png`,      tag:''},
+  {name:"Timothy's Race",      cat:'Driver',                   url:`${BASE}/games/game.html?game=${BASE}/Games6/timothy's-race`,                         img:`${BASE}/cover/TIMRACE.png`,          tag:''},
+  // ── MISC EXTERNAL ──
+  {name:'ReKill',              cat:'Casual',                   url:`${BASE}/games/game.html?game=https://rekill.io/play`,                                img:`${BASE}/rekill.jpeg`,                tag:''},
+  {name:'EEL Slap',            cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/storage3/eelslap/`,                             img:'https://github.com/sz-games/storage3/blob/main/eelslap/Screenshot%202023-04-25%20at%202.35.48%20PM.png?raw=true',tag:''},
+  {name:'WebGL Fluid',         cat:'Casual',                   url:`${BASE}/games/game.html?game=${BASE}/storage3/1/`,                                   img:'https://github.com/sz-games/storage3/blob/main/1/logo.png?raw=true', tag:''},
+  {name:'We Become What We Behold',cat:'Casual',              url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/gfile/wbwwb/index.html`,  img:`${BASE}/cover/67K.avif`,             tag:''},
+  {name:'Dreader',             cat:'Casual Horror',            url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/gfile/dreader/index.html`,img:`${BASE}/cover/Dreader.webp`,        tag:''},
+  {name:'Super Mario Multiplayer',cat:'Casual',               url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/gfile/mariovsluigi/index.html`,img:`${BASE}/cover/647K.png`,        tag:''},
+  {name:'Sketchbook',          cat:'Casual Sandbox',           url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/gfile/sketchbook/index.html`,img:`${BASE}/cover/47K.png`,          tag:''},
+  {name:'George and the Printer',cat:'Casual',                url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/gfile/georgeandtheprinter/index.html`,img:`${BASE}/cover/8Jk.png`, tag:''},
+  {name:'Noclip',              cat:'Casual',                   url:`${BASE}/games/game.html?game=https://noclip.website/`,                               img:'https://github.com/sz-games/storage3/blob/main/NOMG.png?raw=true', tag:''},
+  {name:'Cube 2',              cat:'Casual',                   url:`${BASE}/games/game.html?game=https://kripken.github.io/BananaBread/cube2/bb.html`,   img:`${BASE}/cover/cube2.png`,            tag:''},
+  {name:'Cube Engine',         cat:'Casual',                   url:`${BASE}/games/game.html?game=https://mr-funkinguy.github.io/Cube-engine/play.html`,  img:`${BASE}/cover/CubeEngine.png`,       tag:''},
+  {name:'PC Breakdown',        cat:'Casual Sandbox',           url:`${BASE}/games/Flash.html?game=${BASE}/Games6/PC Breakdown.swf?raw=true`,             img:`${BASE}/cover/PcB.webp`,             tag:''},
+  {name:'Voxiom.io',           cat:'Casual',                   url:`${BASE}/games/game.html?game=https://voxiom.io`,                                     img:`${BASE}/cover/VOX.png`,              tag:''},
 ];
 
 // ── STATE ──
@@ -629,15 +806,28 @@ function render() {
   empty.classList.remove('show');
 
   grid.innerHTML = list.map(g => {
-    const tagHtml = g.tag ? `<div class="card-tag tag-${g.tag==='pop'?'pop':g.tag==='hot'?'hot':'new'}">${g.tag==='pop'?'Popular':g.tag==='hot'?'🔥 Hot':'✨ New'}</div>` : '';
+    const tagHtml = g.tag
+      ? `<div class="card-tag tag-${g.tag==='pop'?'pop':g.tag==='hot'?'hot':'new'}">${g.tag==='pop'?'Pop':g.tag==='hot'?'Hot':'New'}</div>`
+      : '';
     return `
     <a class="game-card" href="${g.url}" target="_blank" rel="noopener">
       <div class="card-thumb">
         <img src="${g.img}" alt="${g.name}" loading="lazy"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-        <div class="thumb-fallback" style="display:none">🎮</div>
+        <div class="thumb-fallback" style="display:none">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="7" width="20" height="13" rx="3"/>
+            <path d="M8 13h2M9 12v2"/>
+            <circle cx="15" cy="12" r=".8" fill="currentColor" stroke="none"/>
+            <circle cx="17" cy="13.5" r=".8" fill="currentColor" stroke="none"/>
+            <path d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/>
+          </svg>
+        </div>
         <div class="card-play">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M10 8.5l5 3.5-5 3.5V8.5z" fill="rgba(255,255,255,.9)" stroke="none"/>
+          </svg>
         </div>
         ${tagHtml}
       </div>
